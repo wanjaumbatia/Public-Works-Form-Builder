@@ -1,0 +1,148 @@
+{% extends '../layouts/base.html' %} {% block content %}
+
+<div class="main-container">
+  <div class="pd-ltr-10 xs-pd-10-5">
+    <div class="min-height-200px">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>Forms Builder</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#">Forms</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Details
+                </li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-6 col-sm-12 text-right">
+            <div class="dropdown">
+              <a class="btn btn-primary btn-sm" href="#">Preview</a>
+              <a class="btn btn-success btn-sm" href="#">Publish</a>
+              <a
+                class="btn btn-danger btn-sm"
+                href="{% url 'forms-builder-delete' form_data.id %}"
+                >Delete Form</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-box">
+        <div class="pb-20">
+          <div class="card-header">
+            <div class="card-title d-flex justify-content-between">
+              <div>
+                <h3>{{form_data.name}}</h3>
+                <p>{{form_data.description}}</p>
+              </div>
+              <div>
+                <button
+                  class="btn btn-primary btn-sm"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#Medium-modal"
+                >
+                  Add Section
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            {% for section in sections %}
+            <div class="mb-3 d-flex justify-content-between">
+              <h6 class="text-lg">{{ section.name }}</h6>
+              <a href="{% url 'forms-builder-delete-section' section.id %}" class="btn btn-danger btn-sm">Delete Section</a>
+            </div>
+            <table class="table mb-3">
+              <thead>
+                <tr>
+                  <th>Label</th>
+                  <th class="text-center">Field Type</th>
+                  <th class="text-center">Sequence</th>
+                  <th class="text-center">Choices</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for field in section.form_fields.all %}
+                <tr>
+                  <td width="15%">{{field.label}}</td>
+                  <td width="15%" class="text-center">{{field.field_type}}</td>
+                  <td width="15%" class="text-center">{{field.order}}</td>
+                  <td width="40%" class="text-center">
+                    {% if field.choices.all %} {% for choice in field.choices.all %}
+                    <span
+                      class="badge badge-pill"
+                      data-bgcolor="#ccc"
+                      style="color: #333; background-color: #ccc"
+                      >{{ choice.choice_text }}</span
+                    >
+                    {% endfor %} {% else %} - {% endif %}
+                  </td>
+                  <td width="15%" class="text-right">
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <hr />
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="Medium-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myLargeModalLabel">Add Section</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+      </div>
+      <form method="POST" action="{% url 'forms-builder-create-section' form_data.id %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Name</label>
+            <input
+              class="form-control"
+              placeholder="Section title"
+              name="name"
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
