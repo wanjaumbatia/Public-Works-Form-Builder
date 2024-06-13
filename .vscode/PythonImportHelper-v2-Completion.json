@@ -273,6 +273,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -370,6 +386,14 @@
     },
     {
         "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -506,7 +530,23 @@
         "documentation": {}
     },
     {
+        "label": "Field",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
         "label": "Form",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Section",
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
         "isExtraImport": true,
@@ -546,7 +586,47 @@
         "documentation": {}
     },
     {
+        "label": "create_section",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_field",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_section",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
         "label": "FormCreateView",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "FormDeleteView",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "FormDetailView",
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
         "isExtraImport": true,
@@ -570,7 +650,7 @@
         "documentation": {}
     },
     {
-        "label": "FormDeleteView",
+        "label": "delete_section",
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
         "isExtraImport": true,
@@ -578,7 +658,7 @@
         "documentation": {}
     },
     {
-        "label": "FormDetailView",
+        "label": "create_field",
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
         "isExtraImport": true,
@@ -898,6 +978,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "forms_builder.migrations.0007_alter_field_options_fieldchoice_order",
+        "description": "forms_builder.migrations.0007_alter_field_options_fieldchoice_order",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('forms_builder', '0006_field_order'),\n    ]\n    operations = [\n        migrations.AlterModelOptions(\n            name='field',\n            options={'ordering': ['order']},\n        ),\n        migrations.AddField(",
+        "detail": "forms_builder.migrations.0007_alter_field_options_fieldchoice_order",
+        "documentation": {}
+    },
+    {
         "label": "FormsBuilderConfig",
         "kind": 6,
         "importPath": "forms_builder.apps",
@@ -947,7 +1036,7 @@
         "kind": 6,
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
-        "peekOfCode": "class FieldChoice(models.Model):\n    field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name=\"choices\")\n    choice_text = models.CharField(max_length=255)\n    def __str__(self):\n        return self.choice_text",
+        "peekOfCode": "class FieldChoice(models.Model):\n    field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name=\"choices\")\n    order = models.IntegerField(max_length=10, default=0)\n    choice_text = models.CharField(max_length=255)\n    def __str__(self):\n        return self.choice_text",
         "detail": "forms_builder.models",
         "documentation": {}
     },
@@ -992,7 +1081,7 @@
         "kind": 5,
         "importPath": "forms_builder.urls",
         "description": "forms_builder.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"forms-builder/\", FormListView.as_view(), name=\"forms-builder-list\"),\n    path(\"forms-builder/create\", FormCreateView.as_view(), name=\"forms-builder-create\"),\n    path(\"forms-builder/edit/<str:pk>\", FormUpdateView.as_view(), name=\"forms-builder-edit\"),\n    path(\"forms-builder/details/<str:pk>\", FormDetailView.as_view(), name=\"forms-builder-details\"),    \n    path(\"forms-builder/delete/<str:pk>\", FormDeleteView.as_view(), name=\"forms-builder-delete\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"forms-builder/\", FormListView.as_view(), name=\"forms-builder-list\"),\n    path(\"forms-builder/create\", FormCreateView.as_view(), name=\"forms-builder-create\"),\n    path(\"forms-builder/edit/<str:pk>\", FormUpdateView.as_view(), name=\"forms-builder-edit\"),\n    path(\"forms-builder/details/<str:pk>\", FormDetailView.as_view(), name=\"forms-builder-details\"),    \n    path(\"forms-builder/delete/<str:pk>\", FormDeleteView.as_view(), name=\"forms-builder-delete\"),\n    path(\"forms-builder/create-section/<str:pk>\", create_section, name=\"forms-builder-create-section\"),\n    path(\"forms-builder/delete-section/<str:pk>\", delete_section, name=\"forms-builder-delete-section\"),\n    path(\"forms-builder/create-field/<str:pk>\", create_field, name=\"forms-builder-create-field\"),\n    path(\"forms-builder/delete-field/<str:pk>\", delete_field, name=\"forms-builder-delete-field\"),",
         "detail": "forms_builder.urls",
         "documentation": {}
     },
@@ -1037,7 +1126,43 @@
         "kind": 6,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "class FormDeleteView(DeleteView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/delete.html\"\n    success_url = reverse_lazy('forms-builder-list')",
+        "peekOfCode": "class FormDeleteView(DeleteView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/delete.html\"\n    success_url = reverse_lazy('forms-builder-list')\ndef create_section(request, pk):\n    form = Form.objects.get(pk=pk)\n    section = Section.objects.create(\n        name=request.POST['name'],\n        form = form",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_section",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def create_section(request, pk):\n    form = Form.objects.get(pk=pk)\n    section = Section.objects.create(\n        name=request.POST['name'],\n        form = form\n    )\n    return redirect('/forms-builder/details/'+pk)\ndef delete_section(request, pk):\n    section = Section.objects.get(pk = pk)\n    section.delete()    ",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_section",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def delete_section(request, pk):\n    section = Section.objects.get(pk = pk)\n    section.delete()    \n    return redirect('/forms-builder/details/'+ str(section.form.id))\ndef create_field(request, pk):\n    # pk is the section id\n    section = Section.objects.get(pk=pk)\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_field",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def create_field(request, pk):\n    # pk is the section id\n    section = Section.objects.get(pk=pk)\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],\n        order=request.POST['order'],\n        section = section\n    )\n    return redirect('/forms-builder/details/'+ str(section.id))",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_field",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def delete_field(request, pk):\n    field = Field.objects.get(pk = pk)\n    field.delete()  \n    section_id = field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(section_id))",
         "detail": "forms_builder.views",
         "documentation": {}
     },
