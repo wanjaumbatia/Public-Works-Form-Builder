@@ -1,6 +1,6 @@
 from django.urls import path
 from forms_builder.views import (create_section, delete_field, delete_section, FormCreateView,
-    FormDeleteView, FormDetailView, FormListView, FormUpdateView, delete_section, create_field)
+    FormDeleteView, FormDetailView, FormListView, FormUpdateView, delete_section, create_field, create_choice, delete_choice)
 
 urlpatterns = [
     path("forms-builder/", FormListView.as_view(), name="forms-builder-list"),
@@ -13,4 +13,6 @@ urlpatterns = [
     path("forms-builder/delete-section/<str:pk>", delete_section, name="forms-builder-delete-section"),
     path("forms-builder/create-field/", create_field, name="forms-builder-create-field"),
     path("forms-builder/delete-field/<str:pk>", delete_field, name="forms-builder-delete-field"),
+    path("forms-builder/create-choice/", create_choice, name="forms-builder-create-choice"),
+    path("forms-builder/delete-choice/<str:pk>", delete_choice, name="forms-builder-delete-choice"),
 ]

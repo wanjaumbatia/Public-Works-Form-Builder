@@ -538,6 +538,14 @@
         "documentation": {}
     },
     {
+        "label": "FieldChoice",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
         "label": "Form",
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
@@ -659,6 +667,22 @@
     },
     {
         "label": "create_field",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_choice",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_choice",
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
         "isExtraImport": true,
@@ -1162,7 +1186,25 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def delete_field(request, pk):\n    field = Field.objects.get(pk = pk)\n    field.delete()  \n    section_id = field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(section_id))",
+        "peekOfCode": "def delete_field(request, pk):\n    field = Field.objects.get(pk = pk)\n    field.delete()  \n    section_id = field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(section_id))\ndef create_choice(request):\n    field = Field.objects.get(pk=request.POST['field'])\n    choice = FieldChoice.objects.create(\n        choice_text=request.POST['choice_text'],\n        field = field",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_choice",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def create_choice(request):\n    field = Field.objects.get(pk=request.POST['field'])\n    choice = FieldChoice.objects.create(\n        choice_text=request.POST['choice_text'],\n        field = field\n    )\n    return redirect('/forms-builder/details/'+ str(field.section.form.id))\ndef delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  ",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "delete_choice",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  \n    form_id = choice.field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(form_id))",
         "detail": "forms_builder.views",
         "documentation": {}
     },

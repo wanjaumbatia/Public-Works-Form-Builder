@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from forms_builder.models import Field, Form, Section
+from forms_builder.models import Field, FieldChoice, Form, Section
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from forms_builder.form import FormBuilderForm
 
@@ -73,4 +73,16 @@ def delete_field(request, pk):
     section_id = field.section.form.id  
     return redirect('/forms-builder/details/'+ str(section_id))
 
+def create_choice(request):
+    field = Field.objects.get(pk=request.POST['field'])
+    choice = FieldChoice.objects.create(
+        choice_text=request.POST['choice_text'],
+        field = field
+    )
+    return redirect('/forms-builder/details/'+ str(field.section.form.id))
 
+def delete_choice(request, pk):
+    choice = FieldChoice.objects.get(pk = pk)
+    choice.delete()  
+    form_id = choice.field.section.form.id  
+    return redirect('/forms-builder/details/'+ str(form_id))
