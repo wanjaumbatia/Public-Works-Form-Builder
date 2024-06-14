@@ -59,10 +59,13 @@
               <h6 class="text-lg">{{ section.name }}</h6>
               <div class="">
                 <button
+                id='addFieldBtn'
                   class="btn btn-primary btn-sm"
                   class="btn btn-primary"
                   data-toggle="modal"
                   data-target="#addFieldModal"
+
+                  onclick="openFieldModal('{{section.id}}')"
                 >
                   Add Field
                 </button>
@@ -113,7 +116,8 @@
                 {% endfor %}
               </tbody>
             </table>
-            <div class="card-header py-3"></div>
+            <hr/>
+            <hr/>
             {% endfor %}
           </div>
         </div>
@@ -191,9 +195,10 @@
           ×
         </button>
       </div>
-      <form method="POST" action="{% url 'forms-builder-create-field' 1 %}">
+      <form method="POST" action="{% url 'forms-builder-create-field' %}">
         {% csrf_token %}
         <div class="modal-body">
+          <input id='section' name='section' hidden />
           <div class="form-group">
             <label>Label</label>
             <input
@@ -237,4 +242,10 @@
     </div>
   </div>
 </div>
+<script>
+    function openFieldModal(id) {
+      document.getElementById('section').value = id;
+    }
+</script>
+
 {% endblock %}

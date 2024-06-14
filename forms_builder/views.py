@@ -56,16 +56,15 @@ def delete_section(request, pk):
     return redirect('/forms-builder/details/'+ str(section.form.id))
 
 
-def create_field(request, pk):
-    # pk is the section id
-    section = Section.objects.get(pk=pk)
+def create_field(request):
+    section = Section.objects.get(pk=request.POST['section'])
     field = Field.objects.create(
         label=request.POST['label'],
         field_type=request.POST['type'],
         order=request.POST['order'],
         section = section
     )
-    return redirect('/forms-builder/details/'+ str(section.id))
+    return redirect('/forms-builder/details/'+ str(section.form.id))
 
 
 def delete_field(request, pk):

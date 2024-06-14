@@ -11,6 +11,6 @@ urlpatterns = [
 
     path("forms-builder/create-section/<str:pk>", create_section, name="forms-builder-create-section"),
     path("forms-builder/delete-section/<str:pk>", delete_section, name="forms-builder-delete-section"),
-    path("forms-builder/create-field/<str:pk>", create_field, name="forms-builder-create-field"),
+    path("forms-builder/create-field/", create_field, name="forms-builder-create-field"),
     path("forms-builder/delete-field/<str:pk>", delete_field, name="forms-builder-delete-field"),
 ]
