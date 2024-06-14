@@ -51,6 +51,7 @@ class Field(models.Model):
     
 class FieldChoice(models.Model):
     field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name="choices")
+    order = models.IntegerField(max_length=10, default=0)
     choice_text = models.CharField(max_length=255)
     
     def __str__(self):

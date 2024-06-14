@@ -57,7 +57,23 @@
             {% for section in sections %}
             <div class="mb-3 d-flex justify-content-between">
               <h6 class="text-lg">{{ section.name }}</h6>
-              <a href="{% url 'forms-builder-delete-section' section.id %}" class="btn btn-danger btn-sm">Delete Section</a>
+              <div class="">
+                <button
+                  id="addFieldBtn"
+                  class="btn btn-primary btn-sm"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#addFieldModal"
+                  onclick="openFieldModal('{{section.id}}')"
+                >
+                  Add Field
+                </button>
+                <a
+                  href="{% url 'forms-builder-delete-section' section.id %}"
+                  class="btn btn-danger btn-sm"
+                  >Delete Section</a
+                >
+              </div>
             </div>
             <table class="table mb-3">
               <thead>
@@ -81,17 +97,35 @@
                       class="badge badge-pill"
                       data-bgcolor="#ccc"
                       style="color: #333; background-color: #ccc"
-                      >{{ choice.choice_text }}</span
                     >
+                      {{ choice.choice_text }}
+                      <a class="close" href="{% url 'forms-builder-delete-choice' choice.id %}"> × </a>
+                    </span>
                     {% endfor %} {% else %} - {% endif %}
                   </td>
                   <td width="15%" class="text-right">
-                    <button class="btn btn-danger btn-sm">Delete</button>
+                    {% if field.field_type == 'radio' or field.field_type == 'select' or field.field_type == 'checkbox' %}
+                    <button
+                      class="btn btn-primary btn-sm"
+                      data-toggle="modal"
+                      data-target="#addChoiceModal"
+                      onclick="openChoiceModal('{{field.id}}')"
+                    >
+                      Add Choice
+                    </button>
+                    {% endif %}
+
+                    <a
+                      class="btn btn-danger btn-sm"
+                      href="{% url 'forms-builder-delete-field' field.id %}"
+                      >Delete</a
+                    >
                   </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
+            <hr />
             <hr />
             {% endfor %}
           </div>
@@ -122,7 +156,10 @@
           ×
         </button>
       </div>
-      <form method="POST" action="{% url 'forms-builder-create-section' form_data.id %}">
+      <form
+        method="POST"
+        action="{% url 'forms-builder-create-section' form_data.id %}"
+      >
         {% csrf_token %}
         <div class="modal-body">
           <div class="form-group">
@@ -145,4 +182,135 @@
     </div>
   </div>
 </div>
+
+<div
+  class="modal fade"
+  id="addFieldModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myLargeModalLabel">Add Field</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+      </div>
+      <form method="POST" action="{% url 'forms-builder-create-field' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <input id="section" name="section" hidden />
+          <div class="form-group">
+            <label>Label</label>
+            <input
+              class="form-control"
+              placeholder="Section title"
+              name="label"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Field type</label>
+            <select
+              class="form-control"
+              placeholder="Section title"
+              name="type"
+              required
+            >
+              <option></option>
+              <option value="text">Text</option>
+              <option value="number">Number</option>
+              <option value="radio">Radio</option>
+              <option value="select">Select</option>
+              <option value="checkbox">Checkbox</option>
+              <option value="Email">Email</option>
+              <option value="phone">Phone Number</option>
+              <option value="file">File</option>
+            </select>
+            <div class="form-group">
+              <label>Sequence</label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Order position in form section"
+                name="order"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="addChoiceModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myLargeModalLabel">Add Choice</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+      </div>
+      <form method="POST" action=" {% url 'forms-builder-create-choice' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <input id="field" name="field" hidden />
+          <div class="form-group">
+            <label>Choice Text</label>
+            <input
+              type="text"
+              class="form-control"
+              name="choice_text"
+              required
+            />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function openFieldModal(id) {
+    document.getElementById("section").value = id;
+  }
+
+  function openChoiceModal(id) {
+    document.getElementById("field").value = id;
+  }
+</script>
+
 {% endblock %}
