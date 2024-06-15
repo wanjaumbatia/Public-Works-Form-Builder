@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from forms_builder.models import Field, FieldChoice, Form, Section
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -86,3 +86,14 @@ def delete_choice(request, pk):
     choice.delete()  
     form_id = choice.field.section.form.id  
     return redirect('/forms-builder/details/'+ str(form_id))
+
+def preview(request, pk):
+    form = Form.objects.get(pk=pk)
+    sections = Section.objects.filter(form=form).prefetch_related('form_fields__choices')    
+    fields = Field.objects.all()
+    return render(request, 'forms_builder/preview.html', {'form': form, 'sections': sections, 'fields': fields})
+
+def publish(request, pk):
+    form = Form.objects.get(pk=pk)
+    return redirect('/forms-builder/details/'+ str(form.id))
+    

@@ -22,7 +22,11 @@
           </div>
           <div class="col-md-6 col-sm-12 text-right">
             <div class="dropdown">
-              <a class="btn btn-primary btn-sm" href="#">Preview</a>
+              <a
+                class="btn btn-primary btn-sm"
+                href="{% url 'forms-builder-preview' form_data.id %}"
+                >Preview</a
+              >
               <a class="btn btn-success btn-sm" href="#">Publish</a>
               <a
                 class="btn btn-danger btn-sm"
@@ -35,22 +39,20 @@
       </div>
       <div class="card-box">
         <div class="pb-20">
-          <div class="card-header">
-            <div class="card-title d-flex justify-content-between">
-              <div>
-                <h3>{{form_data.name}}</h3>
-                <p>{{form_data.description}}</p>
-              </div>
-              <div>
-                <button
-                  class="btn btn-primary btn-sm"
-                  class="btn btn-primary"
-                  data-toggle="modal"
-                  data-target="#Medium-modal"
-                >
-                  Add Section
-                </button>
-              </div>
+          <div class="card-header d-flex justify-content-between">
+            <div>
+              <h3>{{form_data.name}}</h3>
+              <p>{{form_data.description}}</p>
+            </div>
+            <div>
+              <button
+                class="btn btn-primary btn-sm"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#Medium-modal"
+              >
+                Add Section
+              </button>
             </div>
           </div>
           <div class="card-body">
@@ -99,7 +101,12 @@
                       style="color: #333; background-color: #ccc"
                     >
                       {{ choice.choice_text }}
-                      <a class="close" href="{% url 'forms-builder-delete-choice' choice.id %}"> × </a>
+                      <a
+                        class="close"
+                        href="{% url 'forms-builder-delete-choice' choice.id %}"
+                      >
+                        ×
+                      </a>
                     </span>
                     {% endfor %} {% else %} - {% endif %}
                   </td>
