@@ -89,7 +89,7 @@ def delete_choice(request, pk):
 
 def preview(request, pk):
     form = get_form_with_fields_and_choices(pk)
-    return render(request, 'forms_builder/preview.html', {'form': form, 'sections': sections, 'fields': fields})
+    return render(request, 'forms_builder/preview.html', {'form': form})
 
 def publish(request, pk):
     form = Form.objects.get(pk=pk)
@@ -98,6 +98,7 @@ def publish(request, pk):
 def get_form_with_fields_and_choices(form_id):
     form = get_object_or_404(Form, id=form_id)
     form_data = {
+        "id": form.id,
         "name": form.name,
         "description": form.description,
         "status": form.status,
