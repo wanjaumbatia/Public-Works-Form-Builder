@@ -449,6 +449,14 @@
         "documentation": {}
     },
     {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -1148,7 +1156,7 @@
         "kind": 6,
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
-        "peekOfCode": "class FieldChoice(models.Model):\n    field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name=\"choices\")\n    order = models.IntegerField(max_length=10, default=0)\n    choice_text = models.CharField(max_length=255)\n    def __str__(self):\n        return self.choice_text",
+        "peekOfCode": "class FieldChoice(models.Model):\n    field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name=\"choices\")\n    order = models.IntegerField(default=0)\n    choice_text = models.CharField(max_length=255)\n    def __str__(self):\n        return self.choice_text",
         "detail": "forms_builder.models",
         "documentation": {}
     },
@@ -1292,7 +1300,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  \n    form_id = choice.field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(form_id))\ndef preview(request, pk):\n    form = Form.objects.get(pk=pk)\n    sections = Section.objects.filter(form=form).prefetch_related('form_fields__choices')    \n    fields = Field.objects.all()\n    return render(request, 'forms_builder/preview.html', {'form': form, 'sections': sections, 'fields': fields})",
+        "peekOfCode": "def delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  \n    form_id = choice.field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(form_id))\ndef preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form, 'sections': sections, 'fields': fields})\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1301,7 +1309,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def preview(request, pk):\n    form = Form.objects.get(pk=pk)\n    sections = Section.objects.filter(form=form).prefetch_related('form_fields__choices')    \n    fields = Field.objects.all()\n    return render(request, 'forms_builder/preview.html', {'form': form, 'sections': sections, 'fields': fields})\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))",
+        "peekOfCode": "def preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form, 'sections': sections, 'fields': fields})\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"name\": form.name,",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1310,7 +1318,16 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))",
+        "peekOfCode": "def publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"name\": form.name,\n        \"description\": form.description,\n        \"status\": form.status,\n        \"created_on\": form.created_on,",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "get_form_with_fields_and_choices",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"name\": form.name,\n        \"description\": form.description,\n        \"status\": form.status,\n        \"created_on\": form.created_on,\n        \"published_on\": form.published_on,\n        \"created_by\": form.created_by.username if form.created_by else None,\n        \"sections\": []",
         "detail": "forms_builder.views",
         "documentation": {}
     },

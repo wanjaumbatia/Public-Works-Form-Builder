@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from forms_builder.models import Field, FieldChoice, Form, Section
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
@@ -88,12 +88,48 @@ def delete_choice(request, pk):
     return redirect('/forms-builder/details/'+ str(form_id))
 
 def preview(request, pk):
-    form = Form.objects.get(pk=pk)
-    sections = Section.objects.filter(form=form).prefetch_related('form_fields__choices')    
-    fields = Field.objects.all()
+    form = get_form_with_fields_and_choices(pk)
     return render(request, 'forms_builder/preview.html', {'form': form, 'sections': sections, 'fields': fields})
 
 def publish(request, pk):
     form = Form.objects.get(pk=pk)
     return redirect('/forms-builder/details/'+ str(form.id))
+
+def get_form_with_fields_and_choices(form_id):
+    form = get_object_or_404(Form, id=form_id)
+    form_data = {
+        "name": form.name,
+        "description": form.description,
+        "status": form.status,
+        "created_on": form.created_on,
+        "published_on": form.published_on,
+        "created_by": form.created_by.username if form.created_by else None,
+        "sections": []
+    }
     
+    for section in form.sections.all():
+        section_data = {
+            "name": section.name,
+            "fields": []
+        }
+        
+        for field in section.form_fields.all():
+            field_data = {
+                "label": field.label,
+                "field_type": field.field_type,
+                "order": field.order,
+                "choices": []
+            }
+            
+            for choice in field.choices.all():
+                choice_data = {
+                    "order": choice.order,
+                    "choice_text": choice.choice_text
+                }
+                field_data["choices"].append(choice_data)
+                
+            section_data["fields"].append(field_data)
+        
+        form_data["sections"].append(section_data)
+    
+    return form_data
