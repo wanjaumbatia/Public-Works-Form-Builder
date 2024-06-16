@@ -12,6 +12,8 @@ urlpatterns = [
     path('', homepage, name='home'),
     path('', include('authentication.urls')),
     path('users/', include('users.urls')),
+    path("forms-builder/", include('forms_builder.urls')),
+    path('forms/', include('forms.urls')),
     
     
     path('admin/', admin.site.urls),
@@ -22,5 +24,4 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     
     
-    path("", include('forms_builder.urls')),
 ]

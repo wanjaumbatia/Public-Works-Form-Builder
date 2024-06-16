@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     
     'users',
-    'forms_builder'
+    'forms_builder',
+    'forms',
 ]
 SITE_ID=1
 

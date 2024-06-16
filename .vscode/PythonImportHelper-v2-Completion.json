@@ -32,6 +32,22 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -185,6 +201,14 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -334,6 +358,22 @@
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -449,6 +489,14 @@
         "documentation": {}
     },
     {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "get_object_or_404",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -521,6 +569,102 @@
         "documentation": {}
     },
     {
+        "label": "forms_list",
+        "importPath": "forms.views",
+        "description": "forms.views",
+        "isExtraImport": true,
+        "detail": "forms.views",
+        "documentation": {}
+    },
+    {
+        "label": "submit_form",
+        "importPath": "forms.views",
+        "description": "forms.views",
+        "isExtraImport": true,
+        "detail": "forms.views",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Section",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "FieldChoice",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "FieldChoice",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Section",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
         "label": "django.db.models.deletion",
         "kind": 6,
         "isExtraImport": true,
@@ -535,78 +679,6 @@
         "description": "django.conf",
         "isExtraImport": true,
         "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "Form",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "Section",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "Field",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "FieldChoice",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "Form",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "Field",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "FieldChoice",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "Form",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
-        "documentation": {}
-    },
-    {
-        "label": "Section",
-        "importPath": "forms_builder.models",
-        "description": "forms_builder.models",
-        "isExtraImport": true,
-        "detail": "forms_builder.models",
         "documentation": {}
     },
     {
@@ -1044,6 +1116,42 @@
         "documentation": {}
     },
     {
+        "label": "FormsConfig",
+        "kind": 6,
+        "importPath": "forms.apps",
+        "description": "forms.apps",
+        "peekOfCode": "class FormsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'forms'",
+        "detail": "forms.apps",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "forms.urls",
+        "description": "forms.urls",
+        "peekOfCode": "urlpatterns = [\n     path(\"\", forms_list, name=\"forms-list\"),\n     path(\"/submission/<str:pk>\", submit_form, name=\"submit-form\"),\n]",
+        "detail": "forms.urls",
+        "documentation": {}
+    },
+    {
+        "label": "submit_form",
+        "kind": 2,
+        "importPath": "forms.views",
+        "description": "forms.views",
+        "peekOfCode": "def submit_form(request, pk):\n    form = Form.objects.get(pk=pk)\n    return render(request, 'forms/submit.html', {'form': form})\ndef forms_list(request):\n    forms = Form.objects.filter(status='published')\n    print(forms)\n    return render(request, 'forms/list.html', {'forms': forms})",
+        "detail": "forms.views",
+        "documentation": {}
+    },
+    {
+        "label": "forms_list",
+        "kind": 2,
+        "importPath": "forms.views",
+        "description": "forms.views",
+        "peekOfCode": "def forms_list(request):\n    forms = Form.objects.filter(status='published')\n    print(forms)\n    return render(request, 'forms/list.html', {'forms': forms})",
+        "detail": "forms.views",
+        "documentation": {}
+    },
+    {
         "label": "Migration",
         "kind": 6,
         "importPath": "forms_builder.migrations.0001_initial",
@@ -1201,7 +1309,7 @@
         "kind": 5,
         "importPath": "forms_builder.urls",
         "description": "forms_builder.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"forms-builder/\", FormListView.as_view(), name=\"forms-builder-list\"),\n    path(\"forms-builder/create\", FormCreateView.as_view(), name=\"forms-builder-create\"),\n    path(\"forms-builder/edit/<str:pk>\", FormUpdateView.as_view(), name=\"forms-builder-edit\"),\n    path(\"forms-builder/details/<str:pk>\", FormDetailView.as_view(), name=\"forms-builder-details\"),    \n    path(\"forms-builder/delete/<str:pk>\", FormDeleteView.as_view(), name=\"forms-builder-delete\"),\n    path(\"forms-builder/create-section/<str:pk>\", create_section, name=\"forms-builder-create-section\"),\n    path(\"forms-builder/delete-section/<str:pk>\", delete_section, name=\"forms-builder-delete-section\"),\n    path(\"forms-builder/create-field/\", create_field, name=\"forms-builder-create-field\"),\n    path(\"forms-builder/delete-field/<str:pk>\", delete_field, name=\"forms-builder-delete-field\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", FormListView.as_view(), name=\"forms-builder-list\"),\n    path(\"create\", FormCreateView.as_view(), name=\"forms-builder-create\"),\n    path(\"edit/<str:pk>\", FormUpdateView.as_view(), name=\"forms-builder-edit\"),\n    path(\"details/<str:pk>\", FormDetailView.as_view(), name=\"forms-builder-details\"),    \n    path(\"delete/<str:pk>\", FormDeleteView.as_view(), name=\"forms-builder-delete\"),\n    path(\"create-section/<str:pk>\", create_section, name=\"forms-builder-create-section\"),\n    path(\"delete-section/<str:pk>\", delete_section, name=\"forms-builder-delete-section\"),\n    path(\"create-field/\", create_field, name=\"forms-builder-create-field\"),\n    path(\"delete-field/<str:pk>\", delete_field, name=\"forms-builder-delete-field\"),",
         "detail": "forms_builder.urls",
         "documentation": {}
     },
@@ -1588,7 +1696,7 @@
         "kind": 2,
         "importPath": "src.urls",
         "description": "src.urls",
-        "peekOfCode": "def homepage(request):\n    return render(request,'index.html')\nurlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path('admin/', admin.site.urls),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),\n    path(\"api/auth/\", include(\"dj_rest_auth.urls\")),",
+        "peekOfCode": "def homepage(request):\n    return render(request,'index.html')\nurlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    # Third party apps",
         "detail": "src.urls",
         "documentation": {}
     },
@@ -1597,7 +1705,7 @@
         "kind": 5,
         "importPath": "src.urls",
         "description": "src.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path('admin/', admin.site.urls),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),\n    path(\"api/auth/\", include(\"dj_rest_auth.urls\")),\n    path(\"api/auth/registration\", include(\"dj_rest_auth.registration.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),",
+        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),\n    path(\"api/auth/\", include(\"dj_rest_auth.urls\")),",
         "detail": "src.urls",
         "documentation": {}
     },
