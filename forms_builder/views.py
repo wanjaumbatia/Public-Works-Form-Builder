@@ -8,6 +8,7 @@ class FormListView(ListView):
     model = Form
     context_object_name = 'forms'
     template_name='forms_builder/list.html'
+    permission_required = 'forms.permission_codename'
 
 
 class FormDetailView(DetailView):
