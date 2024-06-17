@@ -77,7 +77,10 @@ MIDDLEWARE = [
     'easyaudit.middleware.easyaudit.EasyAuditMiddleware',
     
 ]
-
+AUTHENTICATION_BACKEND = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
 ROOT_URLCONF = 'src.urls'
 
 TEMPLATES = [
@@ -178,3 +181,9 @@ EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
 EMAIL_HOST_USER = '528ab0530c9613'
 EMAIL_HOST_PASSWORD = '63c4c3794e333d'
 EMAIL_PORT = '2525'
+
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_SUBJECT_PREFIX="[PUBLIC WORKS]"
+ACCOUNT_EMAIL_REQUIRED=True

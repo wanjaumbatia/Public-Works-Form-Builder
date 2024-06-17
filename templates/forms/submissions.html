@@ -7,14 +7,16 @@
         <div class="row">
           <div class="col-md-6 col-sm-12">
             <div class="title">
-              <h4>Forms</h4>
+              <h4>Form Submissions</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                   <a href="#">Forms</a>
                 </li>
-                <li class="breadcrumb-item active" aria-current="page">List</li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Submissions
+                </li>
               </ol>
             </nav>
           </div>
@@ -31,18 +33,15 @@
               <tr>
                 <th class="table-plus">Name</th>
                 <th class="datatable-nosort"></th>
+                <th class="datatable-nosort"></th>
               </tr>
             </thead>
             <tbody>
-              {% for item in forms %}
+              {% for item in submissions %}
               <tr>
-                <td class="table-plus">
-                  {{item.name}}
-                </td>
-                <td class="text-center">
-                  <a href="{% url 'submit-form' item.id %}" class="btn btn-sm btn-primary">Submit</a>
-                  <a href="{% url 'form-submissions' item.id %}" class="btn btn-sm btn-success">Submissions</a>
-                </td>
+                <td class="table-plus">{{item.user.first_name}} {{item.user.last_name}}</td>
+                <td class="text-center">{{item.submission_date}}</td>
+                <td></td>
               </tr>
               {% endfor %}
             </tbody>
