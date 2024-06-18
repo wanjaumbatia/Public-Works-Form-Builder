@@ -11,10 +11,16 @@ class Form(models.Model):
     
     name=models.CharField(max_length=255)
     description = models.CharField("Description", max_length=255, blank=True, null=True)
+    # slug = models.SlugField("Slug")
+    template_url = models.CharField("Template Url", max_length=50, blank=True, null=True)
     status = models.CharField("Status", choices=STATUS_CHOICES, max_length=50, default='draft')
     created_on = models.DateTimeField("created On", auto_now=True)
+    
     published_on = models.DateTimeField("Published On", auto_now=False, blank=True, null=True)
     created_by = models.ForeignKey(User, related_name='form_create_user', on_delete=models.CASCADE, blank=True, null=True)
+    published_by = models.ForeignKey(User, related_name='form_publish_user', on_delete=models.CASCADE, blank=True, null=True)
+    
+    # slug:field, template 
 
     def __str__(self):
         return self.name

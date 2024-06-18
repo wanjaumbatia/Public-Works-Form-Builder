@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buildings safety audit data collection form</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendors/styles/core.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendors/styles/style.css' %}"
+    />
+    <style>
+      .dept_header {
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .form-title {
+        font-size: 18px;
+        text-decoration: underline;
+        font-style: italic;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="" style="height: 100vh">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <img width="75px" src="{% static 'gov_logo.png' %}" />
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <h3 class="dept_header">State Department For Public Works</h3>
+        </div>
+        <div class="col-12 d-flex justify-content-center mt-1">
+          <h4 class="">National Building Inspectorate</h4>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center mt-2">
+          <h4 class="form-title">
+            Buildings safety audit data collection form
+          </h4>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-12">
+          <table width="100%">
+            <tr>
+              <td width="25%">
+                <div class="row">
+                  <div class="col-3">County:</div>
+                  <div
+                    style="border-bottom: 1px dashed #000"
+                    class="col-7 font-weight-bold"
+                  >
+                    Muranga
+                  </div>
+                </div>
+              </td>
+              <td width="25%">
+                <div class="row">
+                  <div class="col-3">Estate</div>
+                  <div
+                    style="border-bottom: 1px dashed #000"
+                    class="col-7 font-weight-bold"
+                  >
+                    Gatundu
+                  </div>
+                </div>
+              </td>
+              <td width="25%">
+                <div class="row">
+                  <div class="col-4">Plot No</div>
+                  <div
+                    style="border-bottom: 1px dashed #000"
+                    class="col-6 font-weight-bold"
+                  >
+                    Nairobi
+                  </div>
+                </div>
+              </td>
+              <td width="25%">
+                <div class="row">
+                  <div class="col-4">Serial No</div>
+                  <div
+                    style="border-bottom: 1px dashed #000"
+                    class="col-6 font-weight-bold"
+                  >
+                    Nairobi
+                  </div>
+                </div>
+              </td>
+            </tr>  
+          </table>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.addEventListener("load", window.print());
+    </script>
+  </body>
+</html>

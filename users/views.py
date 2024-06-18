@@ -8,6 +8,7 @@ class UsersListView(ListView):
     model = User
     context_object_name = 'users'
     template_name='users/list.html'
+    permissions = []
 
 class UserDetailView(DetailView):
     model = User

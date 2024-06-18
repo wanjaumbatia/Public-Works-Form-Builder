@@ -377,6 +377,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -497,6 +513,15 @@
         "documentation": {}
     },
     {
+        "label": "django.contrib.auth",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
         "label": "views",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -593,6 +618,31 @@
         "documentation": {}
     },
     {
+        "label": "django.contrib.auth.decorators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
         "label": "login_required",
         "importPath": "django.contrib.auth.decorators",
         "description": "django.contrib.auth.decorators",
@@ -631,6 +681,14 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -771,6 +829,14 @@
     },
     {
         "label": "submissions_list",
+        "importPath": "forms.views",
+        "description": "forms.views",
+        "isExtraImport": true,
+        "detail": "forms.views",
+        "documentation": {}
+    },
+    {
+        "label": "test_pdf",
         "importPath": "forms.views",
         "description": "forms.views",
         "isExtraImport": true,
@@ -1260,7 +1326,7 @@
         "kind": 5,
         "importPath": "forms.urls",
         "description": "forms.urls",
-        "peekOfCode": "urlpatterns = [\n     path(\"\", forms_list, name=\"forms-list\"),\n     path(\"submission/<str:pk>\", submit_form, name=\"submit-form\"),\n     path(\"submissions/<str:pk>\", submissions_list, name=\"form-submissions\"),\n]",
+        "peekOfCode": "urlpatterns = [\n     path(\"\", forms_list, name=\"forms-list\"),\n     path(\"submission/<str:pk>\", submit_form, name=\"submit-form\"),\n     path(\"submissions/<str:pk>\", submissions_list, name=\"form-submissions\"),\n     path(\"test/\", test_pdf, name=\"pdf_test\"),\n]",
         "detail": "forms.urls",
         "documentation": {}
     },
@@ -1269,7 +1335,7 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def forms_list(request):\n    forms = Form.objects.filter(status='published')    \n    return render(request, 'forms/list.html', {'forms': forms})\ndef submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(\n            form=form_dt, user = request.user, data = request.POST\n        )",
+        "peekOfCode": "def forms_list(request):\n    forms = Form.objects.filter(status='published')    \n    return render(request, 'forms/list.html', {'forms': forms})\n@login_required\ndef submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(\n            form=form_dt, user = request.user, data = request.POST",
         "detail": "forms.views",
         "documentation": {}
     },
@@ -1278,7 +1344,7 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(\n            form=form_dt, user = request.user, data = request.POST\n        )\n    return render(request, 'forms/submit.html', {'form': form})\ndef submissions_list(request, pk):\n    form = Form.objects.get(pk=pk)",
+        "peekOfCode": "def submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(\n            form=form_dt, user = request.user, data = request.POST\n        )\n    return render(request, 'forms/submit.html', {'form': form})\n@login_required\ndef submissions_list(request, pk):",
         "detail": "forms.views",
         "documentation": {}
     },
@@ -1287,7 +1353,16 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def submissions_list(request, pk):\n    form = Form.objects.get(pk=pk)\n    submissions = Submission.objects.filter(form=form)\n    return render(request, 'forms/submissions.html', {'submissions': submissions})",
+        "peekOfCode": "def submissions_list(request, pk):\n    form = Form.objects.get(pk=pk)\n    submissions = Submission.objects.filter(form=form)\n    return render(request, 'forms/submissions.html', {'submissions': submissions}) \n@login_required\ndef test_pdf(request):\n    return render(request, 'forms/pdf/test.html')",
+        "detail": "forms.views",
+        "documentation": {}
+    },
+    {
+        "label": "test_pdf",
+        "kind": 2,
+        "importPath": "forms.views",
+        "description": "forms.views",
+        "peekOfCode": "def test_pdf(request):\n    return render(request, 'forms/pdf/test.html')",
         "detail": "forms.views",
         "documentation": {}
     },
@@ -1364,6 +1439,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "forms_builder.migrations.0009_form_published_by_form_template_url",
+        "description": "forms_builder.migrations.0009_form_published_by_form_template_url",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('forms_builder', '0008_alter_field_order_alter_fieldchoice_order'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='form',\n            name='published_by',\n            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='form_publish_user', to=settings.AUTH_USER_MODEL),",
+        "detail": "forms_builder.migrations.0009_form_published_by_form_template_url",
+        "documentation": {}
+    },
+    {
         "label": "FormsBuilderConfig",
         "kind": 6,
         "importPath": "forms_builder.apps",
@@ -1386,7 +1470,7 @@
         "kind": 6,
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
-        "peekOfCode": "class Form(models.Model):    \n    STATUS_CHOICES = [\n        (\"draft\", \"Draft\"),\n        (\"published\", \"Published\"),\n        (\"maintainance\", \"Pulled Down\")\n    ]\n    name=models.CharField(max_length=255)\n    description = models.CharField(\"Description\", max_length=255, blank=True, null=True)\n    status = models.CharField(\"Status\", choices=STATUS_CHOICES, max_length=50, default='draft')\n    created_on = models.DateTimeField(\"created On\", auto_now=True)",
+        "peekOfCode": "class Form(models.Model):    \n    STATUS_CHOICES = [\n        (\"draft\", \"Draft\"),\n        (\"published\", \"Published\"),\n        (\"maintainance\", \"Pulled Down\")\n    ]\n    name=models.CharField(max_length=255)\n    description = models.CharField(\"Description\", max_length=255, blank=True, null=True)\n    # slug = models.SlugField(\"Slug\")\n    template_url = models.CharField(\"Template Url\", max_length=50, blank=True, null=True)",
         "detail": "forms_builder.models",
         "documentation": {}
     },
@@ -1467,7 +1551,7 @@
         "kind": 6,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "class FormListView(ListView):\n    model = Form\n    context_object_name = 'forms'\n    template_name='forms_builder/list.html'\nclass FormDetailView(DetailView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/details.html\"\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)",
+        "peekOfCode": "class FormListView(ListView):\n    model = Form\n    context_object_name = 'forms'\n    template_name='forms_builder/list.html'\n    permission_required = 'forms_builder.view'\nclass FormDetailView(DetailView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/details.html\"\n    def get_context_data(self, **kwargs):",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1503,7 +1587,7 @@
         "kind": 6,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "class FormDeleteView(DeleteView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/delete.html\"\n    success_url = reverse_lazy('forms-builder-list')\ndef create_section(request, pk):\n    form = Form.objects.get(pk=pk)\n    section = Section.objects.create(\n        name=request.POST['name'],\n        form = form",
+        "peekOfCode": "class FormDeleteView(DeleteView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/delete.html\"\n    success_url = reverse_lazy('forms-builder-list')\n@login_required\ndef create_section(request, pk):\n    form = Form.objects.get(pk=pk)\n    section = Section.objects.create(\n        name=request.POST['name'],",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1512,7 +1596,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def create_section(request, pk):\n    form = Form.objects.get(pk=pk)\n    section = Section.objects.create(\n        name=request.POST['name'],\n        form = form\n    )\n    return redirect('/forms-builder/details/'+pk)\ndef delete_section(request, pk):\n    section = Section.objects.get(pk = pk)\n    section.delete()    ",
+        "peekOfCode": "def create_section(request, pk):\n    form = Form.objects.get(pk=pk)\n    section = Section.objects.create(\n        name=request.POST['name'],\n        form = form\n    )\n    return redirect('/forms-builder/details/'+pk)\n@login_required\ndef delete_section(request, pk):\n    section = Section.objects.get(pk = pk)",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1521,7 +1605,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def delete_section(request, pk):\n    section = Section.objects.get(pk = pk)\n    section.delete()    \n    return redirect('/forms-builder/details/'+ str(section.form.id))\ndef create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],\n        order=request.POST['order'],",
+        "peekOfCode": "def delete_section(request, pk):\n    section = Section.objects.get(pk = pk)\n    section.delete()    \n    return redirect('/forms-builder/details/'+ str(section.form.id))\n@login_required\ndef create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1530,7 +1614,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],\n        order=request.POST['order'],\n        section = section\n    )\n    return redirect('/forms-builder/details/'+ str(section.form.id))\ndef delete_field(request, pk):",
+        "peekOfCode": "def create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],\n        order=request.POST['order'],\n        section = section\n    )\n    return redirect('/forms-builder/details/'+ str(section.form.id))\n@login_required",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1539,7 +1623,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def delete_field(request, pk):\n    field = Field.objects.get(pk = pk)\n    field.delete()  \n    section_id = field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(section_id))\ndef create_choice(request):\n    field = Field.objects.get(pk=request.POST['field'])\n    choice = FieldChoice.objects.create(\n        choice_text=request.POST['choice_text'],\n        field = field",
+        "peekOfCode": "def delete_field(request, pk):\n    field = Field.objects.get(pk = pk)\n    field.delete()  \n    section_id = field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(section_id))\n@login_required\ndef create_choice(request):\n    field = Field.objects.get(pk=request.POST['field'])\n    choice = FieldChoice.objects.create(\n        choice_text=request.POST['choice_text'],",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1548,7 +1632,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def create_choice(request):\n    field = Field.objects.get(pk=request.POST['field'])\n    choice = FieldChoice.objects.create(\n        choice_text=request.POST['choice_text'],\n        field = field\n    )\n    return redirect('/forms-builder/details/'+ str(field.section.form.id))\ndef delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  ",
+        "peekOfCode": "def create_choice(request):\n    field = Field.objects.get(pk=request.POST['field'])\n    choice = FieldChoice.objects.create(\n        choice_text=request.POST['choice_text'],\n        field = field\n    )\n    return redirect('/forms-builder/details/'+ str(field.section.form.id))\n@login_required\ndef delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1557,7 +1641,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  \n    form_id = choice.field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(form_id))\ndef preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form,})\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)",
+        "peekOfCode": "def delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  \n    form_id = choice.field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(form_id))\n@login_required\ndef preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form,})\n@login_required",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1566,7 +1650,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form,})\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"name\": form.name,",
+        "peekOfCode": "def preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form,})\n@login_required\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1881,7 +1965,7 @@
         "kind": 2,
         "importPath": "src.urls",
         "description": "src.urls",
-        "peekOfCode": "def homepage(request):\n    return render(request,'index.html')\nurlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    path('accounts/', include('allauth.urls')),",
+        "peekOfCode": "def homepage(request):\n    return render(request,'index.html')\nurlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    # path('accounts/', include('allauth.urls')),",
         "detail": "src.urls",
         "documentation": {}
     },
@@ -1890,7 +1974,7 @@
         "kind": 5,
         "importPath": "src.urls",
         "description": "src.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    path('accounts/', include('allauth.urls')),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),",
+        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    # path('accounts/', include('allauth.urls')),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),",
         "detail": "src.urls",
         "documentation": {}
     },
@@ -1971,7 +2055,7 @@
         "kind": 6,
         "importPath": "users.views",
         "description": "users.views",
-        "peekOfCode": "class UsersListView(ListView):\n    model = User\n    context_object_name = 'users'\n    template_name='users/list.html'\nclass UserDetailView(DetailView):\n    model = User\n    context_object_name = 'user'\n    template_name='users/details.html'   \nclass UserCreateView(CreateView):\n    model = User",
+        "peekOfCode": "class UsersListView(ListView):\n    model = User\n    context_object_name = 'users'\n    template_name='users/list.html'\n    permissions = []\nclass UserDetailView(DetailView):\n    model = User\n    context_object_name = 'user'\n    template_name='users/details.html'   \nclass UserCreateView(CreateView):",
         "detail": "users.views",
         "documentation": {}
     },
