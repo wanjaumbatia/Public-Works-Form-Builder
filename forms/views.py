@@ -14,6 +14,7 @@ def forms_list(request):
 def submit_form(request, pk):
     form = get_form_with_fields_and_choices(pk)
     if request.method == "POST":
+        print(request.POST)
         form_dt = Form.objects.get(pk=pk)
         submission = Submission.objects.create(
             form=form_dt, user = request.user, data = request.POST

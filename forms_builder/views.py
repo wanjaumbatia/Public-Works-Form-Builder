@@ -10,7 +10,6 @@ class FormListView(ListView):
     model = Form
     context_object_name = 'forms'
     template_name='forms_builder/list.html'
-    permission_required = 'forms_builder.view'
 
 class FormDetailView(DetailView):
     model = Form
@@ -63,6 +62,7 @@ def create_field(request):
     section = Section.objects.get(pk=request.POST['section'])
     field = Field.objects.create(
         label=request.POST['label'],
+        name=request.POST['name'],
         field_type=request.POST['type'],
         order=request.POST['order'],
         section = section
@@ -95,7 +95,7 @@ def delete_choice(request, pk):
 @login_required
 def preview(request, pk):
     form = get_form_with_fields_and_choices(pk)
-    return render(request, 'forms_builder/preview.html', {'form': form,})
+    return render(request, 'forms_builder/preview.html', {'form': form})
 
 @login_required
 def publish(request, pk):
@@ -106,6 +106,7 @@ def publish(request, pk):
 def get_form_with_fields_and_choices(form_id):
     form = get_object_or_404(Form, id=form_id)
     form_data = {
+        "id": form.id,
         "name": form.name,
         "description": form.description,
         "status": form.status,
@@ -124,6 +125,8 @@ def get_form_with_fields_and_choices(form_id):
         for field in section.form_fields.all():
             field_data = {
                 "label": field.label,
+                "name": field.name,
+                "required": field.required,
                 "field_type": field.field_type,
                 "order": field.order,
                 "choices": []

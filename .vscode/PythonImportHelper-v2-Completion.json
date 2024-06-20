@@ -393,6 +393,38 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1223,6 +1255,15 @@
         "documentation": {}
     },
     {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
         "label": "AuthenticationConfig",
         "kind": 6,
         "importPath": "authentication.apps",
@@ -1317,7 +1358,7 @@
         "kind": 6,
         "importPath": "forms.models",
         "description": "forms.models",
-        "peekOfCode": "class Submission(models.Model):\n    form = models.ForeignKey(Form, related_name='submissions', on_delete=models.PROTECT)\n    submission_date = models.DateTimeField(\"Submission Date\", auto_now=True)    \n    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)\n    data = models.JSONField('Data')\n    class Meta:\n        verbose_name = \"submission\"\n        verbose_name_plural = \"submissions\"",
+        "peekOfCode": "class Submission(models.Model):    \n    form = models.ForeignKey(Form, related_name='submissions', on_delete=models.PROTECT)\n    submission_date = models.DateTimeField(\"Submission Date\", auto_now=True)    \n    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)\n    data = models.JSONField('Data')\n    class Meta:\n        verbose_name = \"submission\"\n        verbose_name_plural = \"submissions\"",
         "detail": "forms.models",
         "documentation": {}
     },
@@ -1335,7 +1376,7 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def forms_list(request):\n    forms = Form.objects.filter(status='published')    \n    return render(request, 'forms/list.html', {'forms': forms})\n@login_required\ndef submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(\n            form=form_dt, user = request.user, data = request.POST",
+        "peekOfCode": "def forms_list(request):\n    forms = Form.objects.filter(status='published')    \n    return render(request, 'forms/list.html', {'forms': forms})\n@login_required\ndef submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        print(request.POST)\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(",
         "detail": "forms.views",
         "documentation": {}
     },
@@ -1344,7 +1385,7 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(\n            form=form_dt, user = request.user, data = request.POST\n        )\n    return render(request, 'forms/submit.html', {'form': form})\n@login_required\ndef submissions_list(request, pk):",
+        "peekOfCode": "def submit_form(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    if request.method == \"POST\":\n        print(request.POST)\n        form_dt = Form.objects.get(pk=pk)\n        submission = Submission.objects.create(\n            form=form_dt, user = request.user, data = request.POST\n        )\n    return render(request, 'forms/submit.html', {'form': form})\n@login_required",
         "detail": "forms.views",
         "documentation": {}
     },
@@ -1445,6 +1486,24 @@
         "description": "forms_builder.migrations.0009_form_published_by_form_template_url",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('forms_builder', '0008_alter_field_order_alter_fieldchoice_order'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='form',\n            name='published_by',\n            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='form_publish_user', to=settings.AUTH_USER_MODEL),",
         "detail": "forms_builder.migrations.0009_form_published_by_form_template_url",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "forms_builder.migrations.0010_field_name",
+        "description": "forms_builder.migrations.0010_field_name",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('forms_builder', '0009_form_published_by_form_template_url'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='field',\n            name='name',\n            field=models.CharField(default='', max_length=255),\n        ),",
+        "detail": "forms_builder.migrations.0010_field_name",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "forms_builder.migrations.0011_field_required",
+        "description": "forms_builder.migrations.0011_field_required",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('forms_builder', '0010_field_name'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='field',\n            name='required',\n            field=models.BooleanField(default=False, verbose_name='Required'),\n        ),",
+        "detail": "forms_builder.migrations.0011_field_required",
         "documentation": {}
     },
     {
@@ -1551,7 +1610,7 @@
         "kind": 6,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "class FormListView(ListView):\n    model = Form\n    context_object_name = 'forms'\n    template_name='forms_builder/list.html'\n    permission_required = 'forms_builder.view'\nclass FormDetailView(DetailView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/details.html\"\n    def get_context_data(self, **kwargs):",
+        "peekOfCode": "class FormListView(ListView):\n    model = Form\n    context_object_name = 'forms'\n    template_name='forms_builder/list.html'\nclass FormDetailView(DetailView):\n    model = Form\n    context_object_name = 'form_data'\n    template_name = \"forms_builder/details.html\"\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1605,7 +1664,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def delete_section(request, pk):\n    section = Section.objects.get(pk = pk)\n    section.delete()    \n    return redirect('/forms-builder/details/'+ str(section.form.id))\n@login_required\ndef create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],",
+        "peekOfCode": "def delete_section(request, pk):\n    section = Section.objects.get(pk = pk)\n    section.delete()    \n    return redirect('/forms-builder/details/'+ str(section.form.id))\n@login_required\ndef create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        name=request.POST['name'],",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1614,7 +1673,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        field_type=request.POST['type'],\n        order=request.POST['order'],\n        section = section\n    )\n    return redirect('/forms-builder/details/'+ str(section.form.id))\n@login_required",
+        "peekOfCode": "def create_field(request):\n    section = Section.objects.get(pk=request.POST['section'])\n    field = Field.objects.create(\n        label=request.POST['label'],\n        name=request.POST['name'],\n        field_type=request.POST['type'],\n        order=request.POST['order'],\n        section = section\n    )\n    return redirect('/forms-builder/details/'+ str(section.form.id))",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1641,7 +1700,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  \n    form_id = choice.field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(form_id))\n@login_required\ndef preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form,})\n@login_required",
+        "peekOfCode": "def delete_choice(request, pk):\n    choice = FieldChoice.objects.get(pk = pk)\n    choice.delete()  \n    form_id = choice.field.section.form.id  \n    return redirect('/forms-builder/details/'+ str(form_id))\n@login_required\ndef preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form})\n@login_required",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1650,7 +1709,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form,})\n@login_required\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {",
+        "peekOfCode": "def preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form})\n@login_required\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1659,7 +1718,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"name\": form.name,\n        \"description\": form.description,\n        \"status\": form.status,\n        \"created_on\": form.created_on,",
+        "peekOfCode": "def publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"id\": form.id,\n        \"name\": form.name,\n        \"description\": form.description,\n        \"status\": form.status,",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1668,7 +1727,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"name\": form.name,\n        \"description\": form.description,\n        \"status\": form.status,\n        \"created_on\": form.created_on,\n        \"published_on\": form.published_on,\n        \"created_by\": form.created_by.username if form.created_by else None,\n        \"sections\": []",
+        "peekOfCode": "def get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"id\": form.id,\n        \"name\": form.name,\n        \"description\": form.description,\n        \"status\": form.status,\n        \"created_on\": form.created_on,\n        \"published_on\": form.published_on,\n        \"created_by\": form.created_by.username if form.created_by else None,",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -2102,6 +2161,42 @@
         "description": "manage",
         "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
         "detail": "manage",
+        "documentation": {}
+    },
+    {
+        "label": "get_place_details",
+        "kind": 2,
+        "importPath": "scrapper",
+        "description": "scrapper",
+        "peekOfCode": "def get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })\n    if response.status_code == 200:",
+        "detail": "scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "get_places_by_query",
+        "kind": 2,
+        "importPath": "scrapper",
+        "description": "scrapper",
+        "peekOfCode": "def get_places_by_query(query, location='0,0', radius=1000):\n    # Make a request to the Places Text Search endpoint\n    response = requests.get(f'{BASE_URL}/textsearch/json', params={\n        'query': query,\n        'location': location,\n        'radius': radius,\n        'key': API_KEY\n    })  \n    print(response.json())\n    if response.status_code == 200:",
+        "detail": "scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "API_KEY",
+        "kind": 5,
+        "importPath": "scrapper",
+        "description": "scrapper",
+        "peekOfCode": "API_KEY = 'AIzaSyAk5UwwQ6TZyJ1pER_5bJhiUkUWWreLFSY'\nBASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY",
+        "detail": "scrapper",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_URL",
+        "kind": 5,
+        "importPath": "scrapper",
+        "description": "scrapper",
+        "peekOfCode": "BASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })",
+        "detail": "scrapper",
         "documentation": {}
     }
 ]

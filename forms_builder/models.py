@@ -8,7 +8,7 @@ class Form(models.Model):
         ("published", "Published"),
         ("maintainance", "Pulled Down")
     ]
-    
+        
     name=models.CharField(max_length=255)
     description = models.CharField("Description", max_length=255, blank=True, null=True)
     # slug = models.SlugField("Slug")
@@ -45,9 +45,11 @@ class Field(models.Model):
     ]
     
     label = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, default="")
     field_type = models.CharField(max_length=50, choices=FIELD_TYPE_CHOICES)
     order = models.IntegerField(default=0)
     section = models.ForeignKey(Section, related_name="form_fields", on_delete=models.CASCADE)
+    required = models.BooleanField("Required", default=False)
     
     def __str__(self):
         return self.label
