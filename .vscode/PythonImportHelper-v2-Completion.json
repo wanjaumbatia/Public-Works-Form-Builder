@@ -1925,7 +1925,7 @@
         "kind": 5,
         "importPath": "src.settings",
         "description": "src.settings",
-        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / 'static'\n]\nSTATIC_ROOT  = BASE_DIR / 'staticfiles'\nMEDIA_ROOT = BASE_DIR / 'files'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_HOST = 'sandbox.smtp.mailtrap.io'",
+        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / 'static'\n]\nSTATIC_ROOT  = BASE_DIR / 'staticfiles'\nMEDIA_ROOT = BASE_DIR / 'files'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'",
         "detail": "src.settings",
         "documentation": {}
     },
@@ -1934,7 +1934,7 @@
         "kind": 5,
         "importPath": "src.settings",
         "description": "src.settings",
-        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'files'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_HOST = 'sandbox.smtp.mailtrap.io'\nEMAIL_HOST_USER = '528ab0530c9613'\nEMAIL_HOST_PASSWORD = '63c4c3794e333d'\nEMAIL_PORT = '2525'\nLOGIN_REDIRECT_URL = \"/\"",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'files'\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'wanjaumbatia@gmail.com'",
         "detail": "src.settings",
         "documentation": {}
     },
@@ -1943,7 +1943,7 @@
         "kind": 5,
         "importPath": "src.settings",
         "description": "src.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_HOST = 'sandbox.smtp.mailtrap.io'\nEMAIL_HOST_USER = '528ab0530c9613'\nEMAIL_HOST_PASSWORD = '63c4c3794e333d'\nEMAIL_PORT = '2525'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'wanjaumbatia@gmail.com'\nEMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'",
         "detail": "src.settings",
         "documentation": {}
     },
@@ -1952,7 +1952,16 @@
         "kind": 5,
         "importPath": "src.settings",
         "description": "src.settings",
-        "peekOfCode": "#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_HOST = 'sandbox.smtp.mailtrap.io'\nEMAIL_HOST_USER = '528ab0530c9613'\nEMAIL_HOST_PASSWORD = '63c4c3794e333d'\nEMAIL_PORT = '2525'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
+        "peekOfCode": "#AUTH_USER_MODEL = 'accounts.User'\nEMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'wanjaumbatia@gmail.com'\nEMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"",
+        "detail": "src.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_BACKEND",
+        "kind": 5,
+        "importPath": "src.settings",
+        "description": "src.settings",
+        "peekOfCode": "EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'\nEMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'wanjaumbatia@gmail.com'\nEMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"",
         "detail": "src.settings",
         "documentation": {}
     },
@@ -1961,25 +1970,16 @@
         "kind": 5,
         "importPath": "src.settings",
         "description": "src.settings",
-        "peekOfCode": "EMAIL_HOST = 'sandbox.smtp.mailtrap.io'\nEMAIL_HOST_USER = '528ab0530c9613'\nEMAIL_HOST_PASSWORD = '63c4c3794e333d'\nEMAIL_PORT = '2525'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
+        "peekOfCode": "EMAIL_HOST = 'smtp.gmail.com'\nEMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'wanjaumbatia@gmail.com'\nEMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
         "detail": "src.settings",
         "documentation": {}
     },
     {
-        "label": "EMAIL_HOST_USER",
+        "label": "EMAIL_USE_TLS",
         "kind": 5,
         "importPath": "src.settings",
         "description": "src.settings",
-        "peekOfCode": "EMAIL_HOST_USER = '528ab0530c9613'\nEMAIL_HOST_PASSWORD = '63c4c3794e333d'\nEMAIL_PORT = '2525'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
-        "detail": "src.settings",
-        "documentation": {}
-    },
-    {
-        "label": "EMAIL_HOST_PASSWORD",
-        "kind": 5,
-        "importPath": "src.settings",
-        "description": "src.settings",
-        "peekOfCode": "EMAIL_HOST_PASSWORD = '63c4c3794e333d'\nEMAIL_PORT = '2525'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
+        "peekOfCode": "EMAIL_USE_TLS = True\nEMAIL_PORT = 587\nEMAIL_HOST_USER = 'wanjaumbatia@gmail.com'\nEMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
         "detail": "src.settings",
         "documentation": {}
     },
@@ -1988,7 +1988,25 @@
         "kind": 5,
         "importPath": "src.settings",
         "description": "src.settings",
-        "peekOfCode": "EMAIL_PORT = '2525'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
+        "peekOfCode": "EMAIL_PORT = 587\nEMAIL_HOST_USER = 'wanjaumbatia@gmail.com'\nEMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
+        "detail": "src.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_USER",
+        "kind": 5,
+        "importPath": "src.settings",
+        "description": "src.settings",
+        "peekOfCode": "EMAIL_HOST_USER = 'wanjaumbatia@gmail.com'\nEMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
+        "detail": "src.settings",
+        "documentation": {}
+    },
+    {
+        "label": "EMAIL_HOST_PASSWORD",
+        "kind": 5,
+        "importPath": "src.settings",
+        "description": "src.settings",
+        "peekOfCode": "EMAIL_HOST_PASSWORD = 'pynb affo ctro nsdl'\nLOGIN_REDIRECT_URL = \"/\"\nACCOUNT_AUTHENTICATION_METHOD = 'username_email'\nACCOUNT_EMAIL_VERIFICATION = \"mandatory\"\nACCOUNT_EMAIL_SUBJECT_PREFIX=\"[PUBLIC WORKS]\"\nACCOUNT_EMAIL_REQUIRED=True",
         "detail": "src.settings",
         "documentation": {}
     },
