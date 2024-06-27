@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-md-6 col-sm-12">
             <div class="title">
-              <h4>Form Submissions</h4>
+              <h4>{{form.name}} Submissions</h4>
             </div>
             <nav aria-label="breadcrumb" role="navigation">
               <ol class="breadcrumb">
@@ -32,7 +32,8 @@
             <thead>
               <tr>
                 <th class="table-plus">Name</th>
-                <th class="datatable-nosort"></th>
+                <th class="text-center">Date</th>
+                <th class="">Data</th>
                 <th class="datatable-nosort"></th>
               </tr>
             </thead>
@@ -41,6 +42,7 @@
               <tr>
                 <td class="table-plus">{{item.user.first_name}} {{item.user.last_name}}</td>
                 <td class="text-center">{{item.submission_date}}</td>
+                <td class="">{{item.data}}</td>
                 <td></td>
               </tr>
               {% endfor %}

@@ -988,6 +988,22 @@
         "documentation": {}
     },
     {
+        "label": "publish",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "pulldown",
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "isExtraImport": true,
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
         "label": "serializers",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -1017,6 +1033,14 @@
         "description": "users.serializers",
         "isExtraImport": true,
         "detail": "users.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -1394,7 +1418,7 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def submissions_list(request, pk):\n    form = Form.objects.get(pk=pk)\n    submissions = Submission.objects.filter(form=form)\n    return render(request, 'forms/submissions.html', {'submissions': submissions}) \n@login_required\ndef test_pdf(request):\n    return render(request, 'forms/pdf/test.html')",
+        "peekOfCode": "def submissions_list(request, pk):\n    form = Form.objects.get(pk=pk)\n    submissions = Submission.objects.filter(form=form)\n    return render(request, 'forms/submissions.html', {'submissions': submissions, 'form': form}) \n@login_required\ndef test_pdf(request):\n    return render(request, 'forms/pdf/test.html')",
         "detail": "forms.views",
         "documentation": {}
     },
@@ -1601,7 +1625,7 @@
         "kind": 5,
         "importPath": "forms_builder.urls",
         "description": "forms_builder.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", FormListView.as_view(), name=\"forms-builder-list\"),\n    path(\"create\", FormCreateView.as_view(), name=\"forms-builder-create\"),\n    path(\"edit/<str:pk>\", FormUpdateView.as_view(), name=\"forms-builder-edit\"),\n    path(\"details/<str:pk>\", FormDetailView.as_view(), name=\"forms-builder-details\"),    \n    path(\"delete/<str:pk>\", FormDeleteView.as_view(), name=\"forms-builder-delete\"),\n    path(\"create-section/<str:pk>\", create_section, name=\"forms-builder-create-section\"),\n    path(\"delete-section/<str:pk>\", delete_section, name=\"forms-builder-delete-section\"),\n    path(\"create-field/\", create_field, name=\"forms-builder-create-field\"),\n    path(\"delete-field/<str:pk>\", delete_field, name=\"forms-builder-delete-field\"),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", FormListView.as_view(), name=\"forms-builder-list\"),\n    path(\"create\", FormCreateView.as_view(), name=\"forms-builder-create\"),\n    path(\"publish/<str:pk>\", publish, name=\"forms-builder-publish\"),\n    path(\"pulldown/<str:pk>\", pulldown, name=\"forms-builder-pulldown\"),\n    path(\"edit/<str:pk>\", FormUpdateView.as_view(), name=\"forms-builder-edit\"),\n    path(\"details/<str:pk>\", FormDetailView.as_view(), name=\"forms-builder-details\"),    \n    path(\"delete/<str:pk>\", FormDeleteView.as_view(), name=\"forms-builder-delete\"),\n    path(\"create-section/<str:pk>\", create_section, name=\"forms-builder-create-section\"),\n    path(\"delete-section/<str:pk>\", delete_section, name=\"forms-builder-delete-section\"),",
         "detail": "forms_builder.urls",
         "documentation": {}
     },
@@ -1709,7 +1733,7 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form})\n@login_required\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {",
+        "peekOfCode": "def preview(request, pk):\n    form = get_form_with_fields_and_choices(pk)\n    return render(request, 'forms_builder/preview.html', {'form': form})\n@login_required\ndef publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    form.published_on = datetime.now()\n    form.published_by = request.user\n    form.status = 'published'\n    form.save()",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -1718,7 +1742,16 @@
         "kind": 2,
         "importPath": "forms_builder.views",
         "description": "forms_builder.views",
-        "peekOfCode": "def publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"id\": form.id,\n        \"name\": form.name,\n        \"description\": form.description,\n        \"status\": form.status,",
+        "peekOfCode": "def publish(request, pk):\n    form = Form.objects.get(pk=pk)\n    form.published_on = datetime.now()\n    form.published_by = request.user\n    form.status = 'published'\n    form.save()\n    return redirect('/forms-builder/details/'+ str(form.id))\n@login_required\ndef pulldown(request, pk):\n    form = Form.objects.get(pk=pk)",
+        "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "pulldown",
+        "kind": 2,
+        "importPath": "forms_builder.views",
+        "description": "forms_builder.views",
+        "peekOfCode": "def pulldown(request, pk):\n    form = Form.objects.get(pk=pk)\n    form.status = 'maintainance'\n    form.save()    \n    return redirect('/forms-builder/details/'+ str(form.id))\ndef get_form_with_fields_and_choices(form_id):\n    form = get_object_or_404(Form, id=form_id)\n    form_data = {\n        \"id\": form.id,\n        \"name\": form.name,",
         "detail": "forms_builder.views",
         "documentation": {}
     },
@@ -2114,7 +2147,7 @@
         "kind": 2,
         "importPath": "users.signals",
         "description": "users.signals",
-        "peekOfCode": "def send_welcome_email(sender, instance, created, **kwargs):\n    if created:\n        subject = 'Welcome to Public Works EDMS'\n        sender_email = 'no-reply@publicworks.go.ke'  # Change this to your sender email\n        recipient_email = instance.email\n        token = default_token_generator.make_token(instance)\n        User = get_user_model()\n        uid = instance.id\n        reset_url = reverse('password_reset_confirm', args=[uid, token])\n        password_set_url = 'http://127.0.0.1:8000' + reset_url  # Change this to your actual domain",
+        "peekOfCode": "def send_welcome_email(sender, instance, created, **kwargs):\n    if created:\n        subject = 'Welcome to Public Works OFMS'\n        sender_email = 'no-reply@publicworks.go.ke'  # Change this to your sender email\n        recipient_email = instance.email\n        token = default_token_generator.make_token(instance)\n        User = get_user_model()\n        uid = instance.id\n        reset_url = reverse('password_reset_confirm', args=[uid, token])\n        password_set_url = 'http://127.0.0.1:8000' + reset_url  # Change this to your actual domain",
         "detail": "users.signals",
         "documentation": {}
     },

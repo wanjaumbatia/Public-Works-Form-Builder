@@ -25,7 +25,7 @@ def submit_form(request, pk):
 def submissions_list(request, pk):
     form = Form.objects.get(pk=pk)
     submissions = Submission.objects.filter(form=form)
-    return render(request, 'forms/submissions.html', {'submissions': submissions}) 
+    return render(request, 'forms/submissions.html', {'submissions': submissions, 'form': form}) 
 
 @login_required
 def test_pdf(request):

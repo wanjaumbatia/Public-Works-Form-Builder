@@ -1,3 +1,4 @@
+from datetime import datetime
 import django.contrib.auth
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
@@ -100,6 +101,18 @@ def preview(request, pk):
 @login_required
 def publish(request, pk):
     form = Form.objects.get(pk=pk)
+    form.published_on = datetime.now()
+    form.published_by = request.user
+    form.status = 'published'
+    form.save()
+    
+    return redirect('/forms-builder/details/'+ str(form.id))
+
+@login_required
+def pulldown(request, pk):
+    form = Form.objects.get(pk=pk)
+    form.status = 'maintainance'
+    form.save()    
     return redirect('/forms-builder/details/'+ str(form.id))
 
 

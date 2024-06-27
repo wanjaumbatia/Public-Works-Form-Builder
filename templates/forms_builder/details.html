@@ -27,7 +27,13 @@
                 href="{% url 'forms-builder-preview' form_data.id %}"
                 >Preview</a
               >
-              <a class="btn btn-success btn-sm" href="#">Publish</a>
+              
+              {% if form_data.status != 'published' %}
+              <a class="btn btn-success btn-sm" href="{% url 'forms-builder-publish' form_data.id %}">Publish</a>  
+              {% else %}
+              <a class="btn btn-danger btn-sm" href="{% url 'forms-builder-pulldown' form_data.id  %}">Pull Down</a>  
+
+              {% endif %}                
               <a
                 class="btn btn-danger btn-sm"
                 href="{% url 'forms-builder-delete' form_data.id %}"
@@ -247,7 +253,7 @@
               <option value="radio">Radio</option>
               <option value="select">Select</option>
               <option value="checkbox">Checkbox</option>
-              <option value="Email">Email</option>
+              <option value="email">Email</option>
               <option value="phone">Phone Number</option>
               <option value="file">File</option>
             </select>

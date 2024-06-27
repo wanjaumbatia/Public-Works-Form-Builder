@@ -1,11 +1,13 @@
 from django.urls import path
 from forms_builder.views import (create_choice, create_field, create_section, delete_choice,
     delete_field, delete_section, delete_section, FormCreateView, FormDeleteView, FormDetailView,
-    FormListView, FormUpdateView, preview)
+    FormListView, FormUpdateView, preview, publish, pulldown)
 
 urlpatterns = [
     path("", FormListView.as_view(), name="forms-builder-list"),
     path("create", FormCreateView.as_view(), name="forms-builder-create"),
+    path("publish/<str:pk>", publish, name="forms-builder-publish"),
+    path("pulldown/<str:pk>", pulldown, name="forms-builder-pulldown"),
     path("edit/<str:pk>", FormUpdateView.as_view(), name="forms-builder-edit"),
     path("details/<str:pk>", FormDetailView.as_view(), name="forms-builder-details"),    
     path("delete/<str:pk>", FormDeleteView.as_view(), name="forms-builder-delete"),

@@ -10,7 +10,7 @@ from django.urls import reverse
 @receiver(post_save, sender=User)
 def send_welcome_email(sender, instance, created, **kwargs):
     if created:
-        subject = 'Welcome to Public Works EDMS'
+        subject = 'Welcome to Public Works OFMS'
         sender_email = 'no-reply@publicworks.go.ke'  # Change this to your sender email
         recipient_email = instance.email
         token = default_token_generator.make_token(instance)
