@@ -1091,6 +1091,14 @@
         "documentation": {}
     },
     {
+        "label": "pisa",
+        "importPath": "xhtml2pdf",
+        "description": "xhtml2pdf",
+        "isExtraImport": true,
+        "detail": "xhtml2pdf",
+        "documentation": {}
+    },
+    {
         "label": "serializers",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -1480,6 +1488,15 @@
         "description": "forms.urls",
         "peekOfCode": "urlpatterns = [\n     path(\"\", forms_list, name=\"forms-list\"),\n     path(\"submission/<str:pk>\", submit_form, name=\"submit-form\"),\n     path(\"submissions/<str:pk>\", submissions_list, name=\"form-submissions\"),\n     path(\"test/\", test_pdf, name=\"pdf_test\"),\n]",
         "detail": "forms.urls",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_pdf",
+        "kind": 2,
+        "importPath": "forms.views",
+        "description": "forms.views",
+        "peekOfCode": "def render_to_pdf(template_src, context_dict={}):\n    template = get_template(template_src)\n    html = template.render(context_dict)\n    result = BytesIO()\n    pdf = pisa.pisaDocument(BytesIO(html.encode(\"ISO-8859-1\")), result)\n    if not pdf.err:\n        return HttpResponse(result.getvalue(), content_type='application/pdf')\n    return None\n@login_required\ndef forms_list(request):",
+        "detail": "forms.views",
         "documentation": {}
     },
     {
