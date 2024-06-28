@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'corsheaders',
     'allauth',
-    # 'allauth.account',
+    'allauth.account',
     # 'allauth.socialaccount',
     'easyaudit',
     'debug_toolbar',

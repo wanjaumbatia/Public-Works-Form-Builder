@@ -41,15 +41,15 @@
                   {% elif field.field_type == 'radio' %}
                   {% for option in field.choices %}
                   <div class="custom-control custom-radio mb-5">
-											<input type="radio" id="{{ field.label }}_{{ forloop.counter }}" name="{{ field.label }}" class="custom-control-input" value="{{ option.choice_text }}">
-											<label class="custom-control-label" for="{{ field.label }}_{{ forloop.counter }}">{{ option.choice_text }}</label>
+											<input type="radio" id="{{ field.name }}_{{ forloop.counter }}" name="{{ field.name }}" class="custom-control-input" value="{{ option.choice_text }}">
+											<label class="custom-control-label" for="{{ field.name }}_{{ forloop.counter }}">{{ option.choice_text }}</label>
 									</div>
                   {% endfor %}
                   {% elif field.field_type == 'checkbox' %}
                   {% for option in field.choices %}
                   <div class="custom-control custom-checkbox mb-5">
-                    <input type="checkbox" class="custom-control-input" id="{{ field.label }}_{{ forloop.counter }}" name="{{ field.label }}">
-                    <label class="custom-control-label" for="{{ field.label }}_{{ forloop.counter }}">{{ option.choice_text }}</label>
+                    <input type="checkbox" class="custom-control-input" id="{{ field.name }}_{{ forloop.counter }}" name="{{ field.name }}">
+                    <label class="custom-control-label" for="{{ field.name }}_{{ forloop.counter }}">{{ option.choice_text }}</label>
                   </div>
                   {% endfor %}
                   {% elif field.field_type == 'file' %}
@@ -63,6 +63,8 @@
                   <input type="email" class="form-control" name="{{ field.name }}" id="{{ field.name }}" />
                   {% elif field.field_type == 'number' %}
                   <input type="number" class="form-control" name="{{ field.name }}" id="{{ field.name }}" />
+                  {% elif field.field_type == 'textarea' %}
+                  <textarea  class="form-control" name="{{ field.name }}" id="{{ field.name }}" ></textarea>
                   {% endif %}
                 </div>
               </div>

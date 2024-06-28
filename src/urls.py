@@ -4,9 +4,8 @@ from django.urls import path, include
 
 from django.contrib.auth.decorators import login_required, permission_required
 
-@login_required(login_url='/login')
-def homepage(request):
-    return render(request,'index.html')
+from src.views import homepage
+
 
 urlpatterns = [
     path('', homepage, name='home'),
@@ -17,7 +16,7 @@ urlpatterns = [
     
     
     path('admin/', admin.site.urls),
-    # path('accounts/', include('allauth.urls')),
+    path('accounts/', include('allauth.urls')),
     # Third party apps
     path("api-auth/", include("rest_framework.urls")),
     path("api/auth/", include("dj_rest_auth.urls")),

@@ -39,6 +39,7 @@ class Field(models.Model):
         ("email", "Email"),
         ("phone", "Phone"),
         ("radio", "Radio"),
+        ("textarea", "textarea"),
         ("checkbox", "Checkbox"),
         ("select", "Select"),
         ("file", "File"),

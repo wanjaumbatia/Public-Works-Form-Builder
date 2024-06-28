@@ -19,5 +19,5 @@ def send_welcome_email(sender, instance, created, **kwargs):
         reset_url = reverse('password_reset_confirm', args=[uid, token])
         password_set_url = 'http://127.0.0.1:8000' + reset_url  # Change this to your actual domain
         html_message = render_to_string('emails/welcome_email.html', {'user': instance, 'link': password_set_url})  
-              
-        send_mail(subject, None, sender_email, [recipient_email], html_message=html_message)
+        print(reset_url)      
+        #send_mail(subject, None, sender_email, [recipient_email], html_message=html_message)

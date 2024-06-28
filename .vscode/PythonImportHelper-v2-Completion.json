@@ -160,6 +160,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "AbstractUser",
         "importPath": "django.contrib.auth.models",
         "description": "django.contrib.auth.models",
@@ -234,6 +242,22 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -650,12 +674,11 @@
         "documentation": {}
     },
     {
-        "label": "django.contrib.auth.decorators",
-        "kind": 6,
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
         "isExtraImport": true,
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "detail": "django.contrib.auth.decorators",
+        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -692,6 +715,14 @@
     },
     {
         "label": "permission_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
         "importPath": "django.contrib.auth.decorators",
         "description": "django.contrib.auth.decorators",
         "isExtraImport": true,
@@ -756,6 +787,14 @@
         "documentation": {}
     },
     {
+        "label": "Submission",
+        "importPath": "forms.models",
+        "description": "forms.models",
+        "isExtraImport": true,
+        "detail": "forms.models",
+        "documentation": {}
+    },
+    {
         "label": "Form",
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
@@ -837,6 +876,14 @@
     },
     {
         "label": "Section",
+        "importPath": "forms_builder.models",
+        "description": "forms_builder.models",
+        "isExtraImport": true,
+        "detail": "forms_builder.models",
+        "documentation": {}
+    },
+    {
+        "label": "Form",
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
         "isExtraImport": true,
@@ -1001,6 +1048,46 @@
         "description": "forms_builder.views",
         "isExtraImport": true,
         "detail": "forms_builder.views",
+        "documentation": {}
+    },
+    {
+        "label": "BytesIO",
+        "importPath": "io",
+        "description": "io",
+        "isExtraImport": true,
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "get_template",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "render_to_string",
+        "importPath": "django.template.loader",
+        "description": "django.template.loader",
+        "isExtraImport": true,
+        "detail": "django.template.loader",
+        "documentation": {}
+    },
+    {
+        "label": "View",
+        "importPath": "django.views",
+        "description": "django.views",
+        "isExtraImport": true,
+        "detail": "django.views",
         "documentation": {}
     },
     {
@@ -1174,6 +1261,14 @@
         "documentation": {}
     },
     {
+        "label": "homepage",
+        "importPath": "src.views",
+        "description": "src.views",
+        "isExtraImport": true,
+        "detail": "src.views",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
@@ -1203,14 +1298,6 @@
         "description": "django.core.mail",
         "isExtraImport": true,
         "detail": "django.core.mail",
-        "documentation": {}
-    },
-    {
-        "label": "render_to_string",
-        "importPath": "django.template.loader",
-        "description": "django.template.loader",
-        "isExtraImport": true,
-        "detail": "django.template.loader",
         "documentation": {}
     },
     {
@@ -1531,6 +1618,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "forms_builder.migrations.0012_alter_field_field_type",
+        "description": "forms_builder.migrations.0012_alter_field_field_type",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('forms_builder', '0011_field_required'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='field',\n            name='field_type',\n            field=models.CharField(choices=[('text', 'Text'), ('number', 'Number'), ('email', 'Email'), ('phone', 'Phone'), ('radio', 'Radio'), ('textarea', 'textarea'), ('checkbox', 'Checkbox'), ('select', 'Select'), ('file', 'File')], max_length=50),\n        ),",
+        "detail": "forms_builder.migrations.0012_alter_field_field_type",
+        "documentation": {}
+    },
+    {
+        "label": "FieldAdmin",
+        "kind": 6,
+        "importPath": "forms_builder.admin",
+        "description": "forms_builder.admin",
+        "peekOfCode": "class FieldAdmin(admin.ModelAdmin):\n    list_display = ('label', 'name',)\n    ordering = ('id',)",
+        "detail": "forms_builder.admin",
+        "documentation": {}
+    },
+    {
         "label": "FormsBuilderConfig",
         "kind": 6,
         "importPath": "forms_builder.apps",
@@ -1571,7 +1676,7 @@
         "kind": 6,
         "importPath": "forms_builder.models",
         "description": "forms_builder.models",
-        "peekOfCode": "class Field(models.Model):\n    FIELD_TYPE_CHOICES =[\n        (\"text\", \"Text\"),\n        (\"number\", \"Number\"),\n        (\"email\", \"Email\"),\n        (\"phone\", \"Phone\"),\n        (\"radio\", \"Radio\"),\n        (\"checkbox\", \"Checkbox\"),\n        (\"select\", \"Select\"),\n        (\"file\", \"File\"),",
+        "peekOfCode": "class Field(models.Model):\n    FIELD_TYPE_CHOICES =[\n        (\"text\", \"Text\"),\n        (\"number\", \"Number\"),\n        (\"email\", \"Email\"),\n        (\"phone\", \"Phone\"),\n        (\"radio\", \"Radio\"),\n        (\"textarea\", \"textarea\"),\n        (\"checkbox\", \"Checkbox\"),\n        (\"select\", \"Select\"),",
         "detail": "forms_builder.models",
         "documentation": {}
     },
@@ -2071,21 +2176,21 @@
         "documentation": {}
     },
     {
-        "label": "homepage",
-        "kind": 2,
-        "importPath": "src.urls",
-        "description": "src.urls",
-        "peekOfCode": "def homepage(request):\n    return render(request,'index.html')\nurlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    # path('accounts/', include('allauth.urls')),",
-        "detail": "src.urls",
-        "documentation": {}
-    },
-    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "src.urls",
         "description": "src.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    # path('accounts/', include('allauth.urls')),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),",
+        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    path('accounts/', include('allauth.urls')),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),",
         "detail": "src.urls",
+        "documentation": {}
+    },
+    {
+        "label": "homepage",
+        "kind": 2,
+        "importPath": "src.views",
+        "description": "src.views",
+        "peekOfCode": "def homepage(request):\n    users_count = User.objects.count()\n    published_count = Form.objects.filter(status='published').count()\n    draft_count = Form.objects.filter(status='draft').count()\n    total_submissions = Submission.objects.count()\n    return render(request,'index.html', {'users_count': users_count, 'published_count': published_count, 'draft_count': draft_count, 'total_submissions': total_submissions})",
+        "detail": "src.views",
         "documentation": {}
     },
     {
