@@ -42,5 +42,7 @@ def submissions_list(request, pk):
     return render(request, 'forms/submissions.html', {'submissions': submissions, 'form': form}) 
 
 @login_required
-def test_pdf(request):
-    return render(request, 'forms/pdf/test.html')
+def test_pdf(request, pk):
+    data = Submission.objects.get(pk=pk)
+    pdf = render_to_pdf('forms/pdf/test.html', {'data': data})
+    return HttpResponse(pdf,  content_type='application/pdf')

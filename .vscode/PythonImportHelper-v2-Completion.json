@@ -1486,7 +1486,7 @@
         "kind": 5,
         "importPath": "forms.urls",
         "description": "forms.urls",
-        "peekOfCode": "urlpatterns = [\n     path(\"\", forms_list, name=\"forms-list\"),\n     path(\"submission/<str:pk>\", submit_form, name=\"submit-form\"),\n     path(\"submissions/<str:pk>\", submissions_list, name=\"form-submissions\"),\n     path(\"test/\", test_pdf, name=\"pdf_test\"),\n]",
+        "peekOfCode": "urlpatterns = [\n     path(\"\", forms_list, name=\"forms-list\"),\n     path(\"submission/<str:pk>\", submit_form, name=\"submit-form\"),\n     path(\"submissions/<str:pk>\", submissions_list, name=\"form-submissions\"),\n     path(\"test/<str:pk>\", test_pdf, name=\"pdf_test\"),\n]",
         "detail": "forms.urls",
         "documentation": {}
     },
@@ -1522,7 +1522,7 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def submissions_list(request, pk):\n    form = Form.objects.get(pk=pk)\n    submissions = Submission.objects.filter(form=form)\n    return render(request, 'forms/submissions.html', {'submissions': submissions, 'form': form}) \n@login_required\ndef test_pdf(request):\n    return render(request, 'forms/pdf/test.html')",
+        "peekOfCode": "def submissions_list(request, pk):\n    form = Form.objects.get(pk=pk)\n    submissions = Submission.objects.filter(form=form)\n    return render(request, 'forms/submissions.html', {'submissions': submissions, 'form': form}) \n@login_required\ndef test_pdf(request, pk):\n    data = Submission.objects.get(pk=pk)\n    pdf = render_to_pdf('forms/pdf/test.html', {'data': data})\n    return HttpResponse(pdf,  content_type='application/pdf')",
         "detail": "forms.views",
         "documentation": {}
     },
@@ -1531,7 +1531,7 @@
         "kind": 2,
         "importPath": "forms.views",
         "description": "forms.views",
-        "peekOfCode": "def test_pdf(request):\n    return render(request, 'forms/pdf/test.html')",
+        "peekOfCode": "def test_pdf(request, pk):\n    data = Submission.objects.get(pk=pk)\n    pdf = render_to_pdf('forms/pdf/test.html', {'data': data})\n    return HttpResponse(pdf,  content_type='application/pdf')",
         "detail": "forms.views",
         "documentation": {}
     },
