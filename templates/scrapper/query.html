@@ -1,0 +1,45 @@
+{% extends '../layouts/base.html' %} {% block content %}
+
+<div class="main-container">
+  <div class="pd-ltr-10 xs-pd-10-5">
+    <div class="min-height-200px">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="title">
+              <h4>Scrapper</h4>
+            </div>
+            <nav aria-label="breadcrumb" role="navigation">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#">Google Map Scrapper</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Query</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-6 col-sm-12 text-right">
+            <div class="dropdown"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-box">
+        <div class="pd-10"></div>
+        <div class="pb-20">
+            <div class="row">
+                <div class="col-12">
+                    <form method="POST" class="px-3">
+                      {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-11"><input type="text" name="query" class="form-control" placeholder="Enter Search Query"/></div>
+                            <div class="col-md-1"><button type="submit" class="btn btn-primary btn-block">Scrap</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

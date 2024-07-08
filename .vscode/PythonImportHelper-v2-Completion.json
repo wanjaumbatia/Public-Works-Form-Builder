@@ -40,6 +40,22 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -93,6 +109,14 @@
         "description": "django.contrib.auth.forms",
         "isExtraImport": true,
         "detail": "django.contrib.auth.forms",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
         "documentation": {}
     },
     {
@@ -465,6 +489,22 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -522,6 +562,14 @@
     },
     {
         "label": "reverse_lazy",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -643,6 +691,14 @@
     },
     {
         "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -1236,6 +1292,39 @@
         "documentation": {}
     },
     {
+        "label": "query_data",
+        "importPath": "scrapper.views",
+        "description": "scrapper.views",
+        "isExtraImport": true,
+        "detail": "scrapper.views",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "get_place_details",
+        "importPath": "scrapper.utils",
+        "description": "scrapper.utils",
+        "isExtraImport": true,
+        "detail": "scrapper.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_places_by_query",
+        "importPath": "scrapper.utils",
+        "description": "scrapper.utils",
+        "isExtraImport": true,
+        "detail": "scrapper.utils",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -1371,15 +1460,6 @@
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
-        "documentation": {}
-    },
-    {
-        "label": "requests",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
         "documentation": {}
     },
     {
@@ -1887,6 +1967,78 @@
         "documentation": {}
     },
     {
+        "label": "ScrapperConfig",
+        "kind": 6,
+        "importPath": "scrapper.apps",
+        "description": "scrapper.apps",
+        "peekOfCode": "class ScrapperConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'scrapper'",
+        "detail": "scrapper.apps",
+        "documentation": {}
+    },
+    {
+        "label": "LocationInputForm",
+        "kind": 6,
+        "importPath": "scrapper.forms",
+        "description": "scrapper.forms",
+        "peekOfCode": "class LocationInputForm(forms.Form):\n    locations = forms.CharField(widget=forms.Textarea, help_text=\"Enter multiple locations separated by commas\")",
+        "detail": "scrapper.forms",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "scrapper.urls",
+        "description": "scrapper.urls",
+        "peekOfCode": "urlpatterns = [\n     path(\"\", query_data, name=\"query\"),\n]",
+        "detail": "scrapper.urls",
+        "documentation": {}
+    },
+    {
+        "label": "get_place_details",
+        "kind": 2,
+        "importPath": "scrapper.utils",
+        "description": "scrapper.utils",
+        "peekOfCode": "def get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })\n    if response.status_code == 200:",
+        "detail": "scrapper.utils",
+        "documentation": {}
+    },
+    {
+        "label": "get_places_by_query",
+        "kind": 2,
+        "importPath": "scrapper.utils",
+        "description": "scrapper.utils",
+        "peekOfCode": "def get_places_by_query(query, location='0,0', radius=1000):\n    # Make a request to the Places Text Search endpoint\n    response = requests.get(f'{BASE_URL}/textsearch/json', params={\n        'query': query,\n        'location': location,\n        'radius': radius,\n        'key': API_KEY\n    })  \n    print(response.json())\n    if response.status_code == 200:",
+        "detail": "scrapper.utils",
+        "documentation": {}
+    },
+    {
+        "label": "API_KEY",
+        "kind": 5,
+        "importPath": "scrapper.utils",
+        "description": "scrapper.utils",
+        "peekOfCode": "API_KEY =  'AIzaSyAk5UwwQ6TZyJ1pER_5bJhiUkUWWreLFSY'\nBASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY",
+        "detail": "scrapper.utils",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_URL",
+        "kind": 5,
+        "importPath": "scrapper.utils",
+        "description": "scrapper.utils",
+        "peekOfCode": "BASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })",
+        "detail": "scrapper.utils",
+        "documentation": {}
+    },
+    {
+        "label": "query_data",
+        "kind": 2,
+        "importPath": "scrapper.views",
+        "description": "scrapper.views",
+        "peekOfCode": "def query_data(request):\n    if request.method == \"POST\":\n        query = request.POST['query']\n        query_arr = query.split(',')        \n        for item in query_arr:\n            places = get_places_by_query(query)\n            if places:\n                for place in places:\n                    place_id = place.get('place_id')\n                    details = get_place_details(place_id)",
+        "detail": "scrapper.views",
+        "documentation": {}
+    },
+    {
         "label": "application",
         "kind": 5,
         "importPath": "src.asgi",
@@ -2197,7 +2349,7 @@
         "kind": 5,
         "importPath": "src.urls",
         "description": "src.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('admin/', admin.site.urls),\n    path('accounts/', include('allauth.urls')),\n    # Third party apps\n    path(\"api-auth/\", include(\"rest_framework.urls\")),",
+        "peekOfCode": "urlpatterns = [\n    path('', homepage, name='home'),\n    path('', include('authentication.urls')),\n    path('users/', include('users.urls')),\n    path(\"forms-builder/\", include('forms_builder.urls')),\n    path('forms/', include('forms.urls')),\n    path('scrapper/', include('scrapper.urls')),\n    path('admin/', admin.site.urls),\n    path('accounts/', include('allauth.urls')),\n    # Third party apps",
         "detail": "src.urls",
         "documentation": {}
     },
@@ -2339,37 +2491,37 @@
     {
         "label": "get_place_details",
         "kind": 2,
-        "importPath": "scrapper",
-        "description": "scrapper",
+        "importPath": "util",
+        "description": "util",
         "peekOfCode": "def get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })\n    if response.status_code == 200:",
-        "detail": "scrapper",
+        "detail": "util",
         "documentation": {}
     },
     {
         "label": "get_places_by_query",
         "kind": 2,
-        "importPath": "scrapper",
-        "description": "scrapper",
+        "importPath": "util",
+        "description": "util",
         "peekOfCode": "def get_places_by_query(query, location='0,0', radius=1000):\n    # Make a request to the Places Text Search endpoint\n    response = requests.get(f'{BASE_URL}/textsearch/json', params={\n        'query': query,\n        'location': location,\n        'radius': radius,\n        'key': API_KEY\n    })  \n    print(response.json())\n    if response.status_code == 200:",
-        "detail": "scrapper",
+        "detail": "util",
         "documentation": {}
     },
     {
         "label": "API_KEY",
         "kind": 5,
-        "importPath": "scrapper",
-        "description": "scrapper",
-        "peekOfCode": "API_KEY = 'AIzaSyAk5UwwQ6TZyJ1pER_5bJhiUkUWWreLFSY'\nBASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY",
-        "detail": "scrapper",
+        "importPath": "util",
+        "description": "util",
+        "peekOfCode": "API_KEY =  'AIzaSyAk5UwwQ6TZyJ1pER_5bJhiUkUWWreLFSY'\nBASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY",
+        "detail": "util",
         "documentation": {}
     },
     {
         "label": "BASE_URL",
         "kind": 5,
-        "importPath": "scrapper",
-        "description": "scrapper",
+        "importPath": "util",
+        "description": "util",
         "peekOfCode": "BASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })",
-        "detail": "scrapper",
+        "detail": "util",
         "documentation": {}
     }
 ]

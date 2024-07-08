@@ -13,7 +13,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path("forms-builder/", include('forms_builder.urls')),
     path('forms/', include('forms.urls')),
-    
+    path('scrapper/', include('scrapper.urls')),
     
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),

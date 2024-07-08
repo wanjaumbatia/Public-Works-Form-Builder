@@ -1,7 +1,7 @@
 import requests
 
 # Replace 'YOUR_API_KEY' with your actual API key
-API_KEY = 'AIzaSyAk5UwwQ6TZyJ1pER_5bJhiUkUWWreLFSY'
+API_KEY =  'AIzaSyAk5UwwQ6TZyJ1pER_5bJhiUkUWWreLFSY'
 BASE_URL = 'https://maps.googleapis.com/maps/api/place'
 
 def get_place_details(place_id):
@@ -54,15 +54,3 @@ def get_places_by_query(query, location='0,0', radius=1000):
         print('Failed to retrieve places')
         return None
 
-if __name__ == "__main__":
-    query = 'restaurants in New York'
-    places = get_places_by_query(query)
-
-    if places:
-        for place in places:
-            place_id = place.get('place_id')
-            details = get_place_details(place_id)
-            if details:
-                print(details)
-    else:
-        print('No places found')
