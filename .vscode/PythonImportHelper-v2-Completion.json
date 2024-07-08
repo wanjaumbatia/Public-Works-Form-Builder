@@ -1463,6 +1463,15 @@
         "documentation": {}
     },
     {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
         "label": "AuthenticationConfig",
         "kind": 6,
         "importPath": "authentication.apps",
@@ -2367,7 +2376,7 @@
         "kind": 5,
         "importPath": "src.wsgi",
         "description": "src.wsgi",
-        "peekOfCode": "application = get_wsgi_application()",
+        "peekOfCode": "application = get_wsgi_application()\napp=application",
         "detail": "src.wsgi",
         "documentation": {}
     },
@@ -2489,20 +2498,38 @@
         "documentation": {}
     },
     {
-        "label": "get_place_details",
+        "label": "get_places",
         "kind": 2,
         "importPath": "util",
         "description": "util",
-        "peekOfCode": "def get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })\n    if response.status_code == 200:",
+        "peekOfCode": "def get_places(api_key, location, search_term):\n    url = f\"https://maps.googleapis.com/maps/api/place/textsearch/json?query={search_term}+in+{location}&key={api_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:\n        return response.json()\n    else:\n        print(f\"Error: {response.status_code}\")\n        return None\ndef get_place_details(api_key, place_id):\n    url = f\"https://maps.googleapis.com/maps/api/place/details/json?place_id={place_id}&key={api_key}\"",
         "detail": "util",
         "documentation": {}
     },
     {
-        "label": "get_places_by_query",
+        "label": "get_place_details",
         "kind": 2,
         "importPath": "util",
         "description": "util",
-        "peekOfCode": "def get_places_by_query(query, location='0,0', radius=1000):\n    # Make a request to the Places Text Search endpoint\n    response = requests.get(f'{BASE_URL}/textsearch/json', params={\n        'query': query,\n        'location': location,\n        'radius': radius,\n        'key': API_KEY\n    })  \n    print(response.json())\n    if response.status_code == 200:",
+        "peekOfCode": "def get_place_details(api_key, place_id):\n    url = f\"https://maps.googleapis.com/maps/api/place/details/json?place_id={place_id}&key={api_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:\n        return response.json()\n    else:\n        print(f\"Error: {response.status_code}\")\n        return None\ndef format_opening_hours(hours_list):\n    formatted_hours = []",
+        "detail": "util",
+        "documentation": {}
+    },
+    {
+        "label": "format_opening_hours",
+        "kind": 2,
+        "importPath": "util",
+        "description": "util",
+        "peekOfCode": "def format_opening_hours(hours_list):\n    formatted_hours = []\n    for hours in hours_list:\n        parts = hours.split(': ')\n        if len(parts) == 2:\n            day, time_range = parts\n            formatted_hours.append(time_range.replace('\\u202f', '').replace('\\u2009', ''))\n    return formatted_hours\ndef main():\n    data = get_places(API_KEY, LOCATION, SEARCH_TERM)",
+        "detail": "util",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "util",
+        "description": "util",
+        "peekOfCode": "def main():\n    data = get_places(API_KEY, LOCATION, SEARCH_TERM)\n    scrapped_data = []\n    if data:\n        results = data.get('results', [])\n        for place in results:\n            name = place.get('name')\n            address = place.get('formatted_address')\n            place_id = place.get('place_id')\n            latitude = place.get('geometry', {}).get('location', {}).get('lat')",
         "detail": "util",
         "documentation": {}
     },
@@ -2511,16 +2538,25 @@
         "kind": 5,
         "importPath": "util",
         "description": "util",
-        "peekOfCode": "API_KEY =  'AIzaSyAk5UwwQ6TZyJ1pER_5bJhiUkUWWreLFSY'\nBASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY",
+        "peekOfCode": "API_KEY = 'AIzaSyCVHHlqVDOj477LhigLszsbloDISYHXClI'\nimport requests\nimport csv\n# Replace 'YOUR_API_KEY' with your actual Google Places API key\nLOCATION = 'Pretoria'\nSEARCH_TERM = 'Shoprite'\ndef get_places(api_key, location, search_term):\n    url = f\"https://maps.googleapis.com/maps/api/place/textsearch/json?query={search_term}+in+{location}&key={api_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:",
         "detail": "util",
         "documentation": {}
     },
     {
-        "label": "BASE_URL",
+        "label": "LOCATION",
         "kind": 5,
         "importPath": "util",
         "description": "util",
-        "peekOfCode": "BASE_URL = 'https://maps.googleapis.com/maps/api/place'\ndef get_place_details(place_id):\n    # Define the fields you want to retrieve\n    fields = 'name,rating,review,user_ratings_total,formatted_address,geometry,international_phone_number,opening_hours,website,place_id,types,formatted_phone_number'\n    # Make a request to the Place Details endpoint\n    response = requests.get(f'{BASE_URL}/details/json', params={\n        'place_id': place_id,\n        'fields': fields,\n        'key': API_KEY\n    })",
+        "peekOfCode": "LOCATION = 'Pretoria'\nSEARCH_TERM = 'Shoprite'\ndef get_places(api_key, location, search_term):\n    url = f\"https://maps.googleapis.com/maps/api/place/textsearch/json?query={search_term}+in+{location}&key={api_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:\n        return response.json()\n    else:\n        print(f\"Error: {response.status_code}\")\n        return None",
+        "detail": "util",
+        "documentation": {}
+    },
+    {
+        "label": "SEARCH_TERM",
+        "kind": 5,
+        "importPath": "util",
+        "description": "util",
+        "peekOfCode": "SEARCH_TERM = 'Shoprite'\ndef get_places(api_key, location, search_term):\n    url = f\"https://maps.googleapis.com/maps/api/place/textsearch/json?query={search_term}+in+{location}&key={api_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:\n        return response.json()\n    else:\n        print(f\"Error: {response.status_code}\")\n        return None\ndef get_place_details(api_key, place_id):",
         "detail": "util",
         "documentation": {}
     }

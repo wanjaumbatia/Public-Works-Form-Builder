@@ -33,7 +33,10 @@
               <tr>
                 <th class="table-plus">Name</th>
                 <th class="text-center">Date</th>
-                <th class="">Data</th>
+                <th class="">County</th>
+                <th class="">Estate</th>
+                <th class="">Owner</th>
+                <th class=""></th>
                 <th class="datatable-nosort"></th>
               </tr>
             </thead>
@@ -42,7 +45,9 @@
               <tr>
                 <td class="table-plus">{{item.user.first_name}} {{item.user.last_name}}</td>
                 <td class="text-center">{{item.submission_date}}</td>
-                <td class="">{{item.data}}</td>
+                <td class="">{{item.data.county}}</td>
+                <td class="">{{item.data.estate}}</td>
+                <td class="">{{item.data.owner_name}}</td>
                 <td></td>
               </tr>
               {% endfor %}
